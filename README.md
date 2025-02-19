@@ -2,7 +2,7 @@
 
 ### This project is motivated by the goal of ensuring a seamless and reliable user experience in a To-Do application through comprehensive software testing, bridging theory and practice to deliver a high-quality productivity tool.
 
-##*Prototype Description*  
+## *Prototype Description*  
 
 ### The prototype is a lightweight, user-friendly To-Do application designed to help users manage tasks efficiently. It includes core features such as task creation, editing, deletion, and completion. The interface is intuitive, with a clean design for easy navigation. The prototype will be developed using Nextjs, mongoDb, Prisma, NextAuth, Docker and Github actions as CI/CD pipeline and will serve as the foundation for applying various software testing techniques, including functional, usability, and performance testing, to ensure robustness and reliability.
 
