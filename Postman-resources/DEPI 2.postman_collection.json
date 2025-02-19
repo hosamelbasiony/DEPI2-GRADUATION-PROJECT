@@ -1,0 +1,70 @@
+{
+	"info": {
+		"_postman_id": "a5563ca8-9d46-4131-a4e2-5ea56d53f0d4",
+		"name": "DEPI 2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2798790",
+		"_collection_link": "https://lively-space-21810.postman.co/workspace/ERPNEXT~3f787d35-f8d0-4e55-9f59-f7b0bb5bb6b8/collection/2798790-a5563ca8-9d46-4131-a4e2-5ea56d53f0d4?action=share&source=collection_link&creator=2798790"
+	},
+	"item": [
+		{
+			"name": "Signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Bobo\",\r\n    \"email\": \"bobo@home.com\",\r\n    \"password\": \"asd\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/auth/register",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List users",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Bobo\",\r\n    \"email\": \"bobo@home.com\",\r\n    \"password\": \"asd\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/user",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
