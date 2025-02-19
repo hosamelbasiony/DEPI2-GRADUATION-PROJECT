@@ -3,7 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import AuthProvider from "../components/auth/AuthProvider";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"] }); 
+// todo
 
 export const metadata: Metadata = {
   title: "Todos",
