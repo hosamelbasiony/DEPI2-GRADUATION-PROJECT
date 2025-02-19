@@ -1,0 +1,32 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model TodoUser {
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  name        String @unique
+  email       String @unique
+  lab         String
+  password    String
+  updatedAt   DateTime? @updatedAt
+  createdAt   DateTime  @default(now())
+  posts       Todo[]
+}
+
+model Todo {
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  author      TodoUser  @relation(fields: [authorId], references: [id])
+  authorId    String
+  title       String?
+  userId      String?
+  isCompleted Boolean   @default(false)
+  updatedAt   DateTime? @updatedAt
+  createdAt   DateTime  @default(now())
+}
+
+// npx prisma db push
