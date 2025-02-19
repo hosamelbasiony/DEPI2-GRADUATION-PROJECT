@@ -1,3 +1,10 @@
+## *Objectives*  
+
+##### The objective of this project is to develop a To-Do application prototype and apply software testing techniques to ensure its reliability and robustness. The project aims to achieve the following goals:
+- fullfill the requirements of the DEPI 2 training.
+- imporove teamwork skills.
+- apply software testing techniques to a real-world project.
+
 ## *Motivation*  
 
 ##### This project is motivated by the goal of ensuring a seamless and reliable user experience in a To-Do application through comprehensive software testing, bridging theory and practice to deliver a high-quality productivity tool.
