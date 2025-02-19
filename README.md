@@ -1,32 +1,32 @@
 ## *Motivation*  
 
-### This project is motivated by the goal of ensuring a seamless and reliable user experience in a To-Do application through comprehensive software testing, bridging theory and practice to deliver a high-quality productivity tool.
+##### This project is motivated by the goal of ensuring a seamless and reliable user experience in a To-Do application through comprehensive software testing, bridging theory and practice to deliver a high-quality productivity tool.
 
 ## *Prototype Description*  
 
-### The prototype is a lightweight, user-friendly To-Do application designed to help users manage tasks efficiently. It includes core features such as task creation, editing, deletion, and completion. The interface is intuitive, with a clean design for easy navigation. The prototype will be developed using Nextjs, mongoDb, Prisma, NextAuth, Docker and Github actions as CI/CD pipeline and will serve as the foundation for applying various software testing techniques, including functional, usability, and performance testing, to ensure robustness and reliability.
+##### The prototype is a lightweight, user-friendly To-Do application designed to help users manage tasks efficiently. It includes core features such as task creation, editing, deletion, and completion. The interface is intuitive, with a clean design for easy navigation. The prototype will be developed using Nextjs, mongoDb, Prisma, NextAuth, Docker and Github actions as CI/CD pipeline and will serve as the foundation for applying various software testing techniques, including functional, usability, and performance testing, to ensure robustness and reliability.
 
 ## *Project Plan*  
 
-### *1. Planning*  
+##### *1. Planning*  
 - Define goals, scope, and testing strategies.  
 - Gather functional and non-functional requirements.  
 - Allocate resources (tools, technologies, team roles).  
 - Create a timeline with milestones.  
 - Identify risks and mitigation strategies.  
 
-### *2. Design*  
+##### *2. Design*  
 - Design system architecture (front-end, back-end, database).  
 - Create wireframes and UI/UX mockups.  
 - Define core features (task creation, editing, completion).  
 - Develop a test plan with cases and methodologies.  
 
-### *3. Implementation*  
+##### *3. Implementation*  
 - Develop front-end Nextjs.  
 - Implement back-end (Nextjs, Prisma, Nodejs) and database (MongoDB).  
 - Integrate core features (task management, authentication).  
 
-### *4. Testing and Evaluation*  
+##### *4. Testing and Evaluation*  
 - Conduct functional, usability, and performance testing.  
 - Identify and fix bugs or issues.  
 - Evaluate app performance against requirements.  
@@ -34,19 +34,19 @@
 
 ## *Team members*  
 
-### *1. محمد عباس مختار*  
+##### *1. محمد عباس مختار*  
 - 01210616777
 - Mohamedabbas81@icloud.com
 
-### *2. إبراهيم سمير إبراهيم محمد*  
+##### *2. إبراهيم سمير إبراهيم محمد*  
 - 01002571986
 - Ibrahimsamir87@outlook.com
 
-### *3. أسماء الدالي*  
+##### *3. أسماء الدالي*  
 - 01128738125
 - asmaaeldaly94@gmail.com
 
-### *4. حسام محمد علي البسيوني*  
+##### *4. حسام محمد علي البسيوني*  
 - 01014124943
 - hosamelbasiony@gmail.com
 
