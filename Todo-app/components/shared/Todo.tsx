@@ -12,7 +12,7 @@ const Todo = ({ todo }: { todo: todoType }) => {
 
   return (
     <div
-      className="w-full  flex items-center justify-between bg-white py-3 px-20 rounded-2xl"
+      className="w-full flex items-center justify-between bg-white py-3 px-4 md:px-20 rounded-2xl"
       style={todoStyle}
     >
       <ChangeTodo todo={todo} />

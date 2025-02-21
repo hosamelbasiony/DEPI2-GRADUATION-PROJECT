@@ -5,7 +5,7 @@ import Button from "../ui/Button";
 
 const AddTodo = () => {
   return (
-    <Form action={create} className="w-1/2 m-auto">
+    <Form action={create} className="w-5/6 md:w-1/2 m-auto">
       <div className="flex">
         <Input
           name="input"
