@@ -1,0 +1,325 @@
+{
+	"info": {
+		"_postman_id": "a5563ca8-9d46-4131-a4e2-5ea56d53f0d4",
+		"name": "DEPI 2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2798790",
+		"_collection_link": "https://lively-space-21810.postman.co/workspace/ERPNEXT~3f787d35-f8d0-4e55-9f59-f7b0bb5bb6b8/collection/2798790-a5563ca8-9d46-4131-a4e2-5ea56d53f0d4?action=share&source=collection_link&creator=2798790"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register user",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"email@email.com\",\r\n    \"name\": \"Hosam Mohammad\",\r\n    \"password\": \"dev@dmin406A\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3011/api/user/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3011",
+							"path": [
+								"api",
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login user",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"hosam@home.com\",\r\n    \"password\": \"dev@dmin406A\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3011/api/user/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3011",
+							"path": [
+								"api",
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout user",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3011/api/user/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3011",
+							"path": [
+								"api",
+								"user",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user profile",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3011/api/user/profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3011",
+							"path": [
+								"api",
+								"user",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Todos",
+			"item": [
+				{
+					"name": "All todos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3011/api/todo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3011",
+							"path": [
+								"api",
+								"todo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create todo",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"new todo 2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3011/api/todo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3011",
+							"path": [
+								"api",
+								"todo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get todo",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3011/api/todo/67b9201ce30ca552af81b874",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3011",
+							"path": [
+								"api",
+								"todo",
+								"67b9201ce30ca552af81b874"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update todo",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"new todo 33333\",\r\n    \"isCompleted\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3011/api/todo/67b9201ce30ca552af81b874",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3011",
+							"path": [
+								"api",
+								"todo",
+								"67b9201ce30ca552af81b874"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete todo",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3011/api/todo/67b9282ed51729c762f60fa3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3011",
+							"path": [
+								"api",
+								"todo",
+								"67b9282ed51729c762f60fa3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
