@@ -49,30 +49,14 @@
 
 ## *Team members*  
 
-##### *1. محمد عباس مختار*  
-- 01210616777
-- Mohamedabbas81@icloud.com
-
-##### *2. إبراهيم سمير إبراهيم محمد*  
-- 01002571986
-- Ibrahimsamir87@outlook.com
-
-##### *3. أسماء الدالي*  
-- 01128738125
-- asmaaeldaly94@gmail.com
-
-##### *4. حسام محمد علي البسيوني*  
-- 01014124943
-- hosamelbasiony@gmail.com
-
-##### *5. محمود حامد*  
-- 01271373720
-- hamd40455@gmail.com
-
-##### *6. زياد احمد اسماعيل*  
-- 01000465078
-- ziadesmail80@gmail.com
+| Member                     | Email                      | Phone          |
+| -------------------------- | -------------------------- | -------------- |
+| إبراهيم سمير إبراهيم محمد| ibrahimsamir87@outlook.com | 01002571986    |
+| محمد عباس مختار           | mohamedabbas81@icloud.com  | 01210616777    |
+| أسماء الدالي              | asmaaeldaly94@gmail.com    | 01128738125    |
+| محمود حامد                | hamd40455@gmail.com        | 01271373720    |
+| زياد احمد اسماعيل         | ziadesmail80@gmail.com     | 01271373720    |
+| حسام محمد علي البسيوني   | hosamelbasiony@gmail.com   | 01014124943    |
 
 
-
-## SRS Document and team members in proj.pdf
+## Read more about SRS an project documentation [proj.pdf](./proj.pdf)
