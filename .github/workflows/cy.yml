@@ -32,11 +32,11 @@ jobs:
         working-directory: ./MERN-TODO-APP/client
         run: npm run build
 
-      - name: Unset NODE_OPTIONS
-        run: unset NODE_OPTIONS
+      # - name: Unset NODE_OPTIONS
+      #   run: unset NODE_OPTIONS
 
-      - name: Clear cache
-        run: rm /home/hosam/.cache -rf
+      # - name: Clear cache
+      #   run: rm /home/hosam/.cache -rf
 
       # - name: Start MongoDB
       #   uses: supercharge/mongodb-github-action@1.12.0
