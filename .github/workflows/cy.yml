@@ -32,10 +32,10 @@ jobs:
         working-directory: ./MERN-TODO-APP/client
         run: npm run build
 
-      - name: Start MongoDB
-        uses: supercharge/mongodb-github-action@1.12.0
-        with:
-          mongodb-version: ${{ matrix.mongodb-version }}
+      # - name: Start MongoDB
+      #   uses: supercharge/mongodb-github-action@1.12.0
+      #   with:
+      #     mongodb-version: ${{ matrix.mongodb-version }}
 
       - name: Cypress run
         uses: cypress-io/github-action@v4
