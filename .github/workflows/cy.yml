@@ -12,9 +12,10 @@ jobs:
   #       with:
   #         dry-run: 'true'
 
+  # sudo chmod -R 777 /home/hosam 
+
   cypress-run-e2e-tests:
-    # runs-on: ubuntu-22.04
-    runs-on: self-hosted
+    runs-on: ubuntu-22.04
     strategy:
       matrix:
         node-version: [20.x]
@@ -66,6 +67,17 @@ jobs:
           NODE_ENV: "development"
           PORT: 4312
       
+      # - name: Copy env file
+      #   run: cp /home/hosam/actions-runner/_work/DEPI2-GRADUATION-PROJECT/DEPI2-GRADUATION-PROJECT/MERN-TODO-APP/server/* /home/hosam/server/ -r
+      
+      # - name: Restart servfer
+      #   run: pm2 restart 0
+
+      # - run: echo "🍏 This job's status is ${{ job.status }} ..."
+
+  upload-artifacts-to-server:
+    runs-on: self-hosted
+    steps:
       - name: Copy env file
         run: cp /home/hosam/actions-runner/_work/DEPI2-GRADUATION-PROJECT/DEPI2-GRADUATION-PROJECT/MERN-TODO-APP/server/* /home/hosam/server/ -r
       
