@@ -28,8 +28,12 @@ jobs:
           node-version: '20'
           cache: 'npm'
 
-      - name: Install dependencies
+      - name: Install server dependencies
         working-directory: ./MERN-TODO-APP/server
+        run: npm install
+
+      - name: Install client dependencies
+        working-directory: ./MERN-TODO-APP/client
         run: npm install
 
       - name: Run Backend
