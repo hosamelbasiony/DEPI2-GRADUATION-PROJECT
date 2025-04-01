@@ -76,6 +76,7 @@ jobs:
       # - run: echo "🍏 This job's status is ${{ job.status }} ..."
 
   upload-artifacts-to-server:
+    needs: [cypress-run-e2e-tests]
     runs-on: self-hosted
     steps:
       - name: Copy env file
