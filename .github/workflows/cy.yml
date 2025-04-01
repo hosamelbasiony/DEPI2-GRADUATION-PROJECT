@@ -25,7 +25,7 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
-          cache-dependency-path: subdir/package-lock.json
+          cache-dependency-path: ./MERN-TODO-APP/server/package-lock.json
           node-version: '20'
           cache: 'npm'
 
