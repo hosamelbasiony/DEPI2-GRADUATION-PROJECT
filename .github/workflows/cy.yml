@@ -19,6 +19,11 @@ jobs:
   
   cypress-run:
     runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        node-version: [20.x, 22.x]
+        mongodb-version: ['6.0', '7.0', '8.0']
+
     steps:
       - uses: actions/checkout@v4
         
@@ -41,6 +46,11 @@ jobs:
         working-directory: ./MERN-TODO-APP/client
         run: npm run build
 
+      - name: Start MongoDB
+        uses: supercharge/mongodb-github-action@1.12.0
+        with:
+          mongodb-version: ${{ matrix.mongodb-version }}
+
       # - name: Run Backend
       #   working-directory: ./MERN-TODO-APP/server
       #   run: |
@@ -58,5 +68,10 @@ jobs:
           browser: chrome
           start: npm run dev
           wait-on: "http://localhost:4311"
+        env:
+          MONGO_URI: mongodb://127.0.0.1:27017/Todos
+          JWT: "somestrongsecret"
+          NODE_ENV: "development"
+         
       
       - run: echo "🍏 This job's status is ${{ job.status }}."
