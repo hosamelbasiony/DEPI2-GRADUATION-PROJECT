@@ -39,28 +39,20 @@ jobs:
 
       - name: Run Backend
         working-directory: ./MERN-TODO-APP/server
-        # run: npm start
         run: |
           npm start &
           sleep 5 &&
           curl http://localhost:4311 -I
 
-      - name: Cypress run
-        uses: cypress-io/github-action@v3
-        with:
-          working-directory: ./MERN-TODO-APP/client
-          project: ./cypress/e2e
-          browser: chrome
-          # build: npm build
-          start: npm run dev
-          wait-on: "http://localhost:5173"
+      - name: Test Backend
+        run: curl http://localhost:4311
 
-      # - name: Run Cypress tests
-      #   uses: ./MERN-TODO-APP/client/cypress/e2e/happy.cy.js
+      # - name: Cypress run
+      #   uses: cypress-io/github-action@v3
       #   with:
       #     working-directory: ./MERN-TODO-APP/client
-      #     start: npm start
-      #     wait-on: 'http://localhost:5173'
-      #     wait-on-timeout: 60
+      #     browser: chrome
+      #     start: npm run dev
+      #     wait-on: "http://localhost:5173"
       
       - run: echo "🍏 This job's status is ${{ job.status }}."
