@@ -82,7 +82,7 @@ function Register() {
           </span>
         )}
         {state.error && (
-          <span className="message bg-red-600">{state.error}</span>
+          <span data-cy="registration-error" className="message bg-red-600">{state.error}</span>
         )}
         <Button data-cy="register" disabled={isPending}>
           {isPending ? "Registering" : "Register"}

@@ -7,7 +7,7 @@ describe('Authentication with proper creds', () => {
     cy.wait(1000)
   })
 
-  it('Register to the todo app with proper creds', () => {
+  it('As a user, I want to create a new todo item so that I can track tasks', () => {
 
     cy.visit('/register')
 
@@ -23,38 +23,13 @@ describe('Authentication with proper creds', () => {
     cy.get('input[data-cy="password"]')
       .should('exist')
       .clear()
-      .type('depi2')
+      .type('Depi@123')
 
     cy.get('button[data-cy="register"]')
       .should('exist')
       .click()
 
     cy.wait(1000)
-  })
-
-
-  it('Login with proper creds and renders the landing page', () => {
-
-    cy.visit('/login')
-
-    cy.wait(1000)
-
-    cy.get('input[data-cy="email"]')
-      .should('exist')
-      .clear()
-      .type(email)
-
-    cy.get('input[data-cy="password"]')
-      .should('exist')
-      .clear()
-      .type('depi2')
-
-    cy.get('button[data-cy="login"]')
-      .should('exist')
-      .click()
-
-    cy.get('input[placeholder="Enter todo"]')
-      .should('exist')
   })
 
   it('Adds a todo', () => {
@@ -69,7 +44,7 @@ describe('Authentication with proper creds', () => {
     cy.get('input[data-cy="password"]')
       .should('exist')
       .clear()
-      .type('depi2')
+      .type('Depi@123')
 
     cy.get('button[data-cy="login"]')
       .should('exist')
@@ -100,7 +75,7 @@ describe('Authentication with proper creds', () => {
     cy.get('input[data-cy="password"]')
       .should('exist')
       .clear()
-      .type('depi2')
+      .type('Depi@123')
 
     cy.get('button[data-cy="login"]')
       .should('exist')
@@ -132,7 +107,7 @@ describe('Authentication with proper creds', () => {
     cy.get('input[data-cy="password"]')
       .should('exist')
       .clear()
-      .type('depi2')
+      .type('Depi@123')
 
     cy.get('button[data-cy="login"]')
       .should('exist')
@@ -164,7 +139,7 @@ describe('Authentication with proper creds', () => {
     cy.get('input[data-cy="password"]')
       .should('exist')
       .clear()
-      .type('depi2')
+      .type('Depi@123')
 
     cy.get('button[data-cy="login"]')
       .should('exist')
@@ -182,8 +157,6 @@ describe('Authentication with proper creds', () => {
       .should('exist')
       .clear()
       .type('Test Todo Updated')
-      
-    cy.wait(500)
 
     cy.get('button[data-cy="update-todo"]')
       .should('exist')
@@ -209,7 +182,7 @@ describe('Authentication with proper creds', () => {
     cy.get('input[data-cy="password"]')
       .should('exist')
       .clear()
-      .type('depi2')
+      .type('Depi@123')
 
     cy.get('button[data-cy="login"]')
       .should('exist')

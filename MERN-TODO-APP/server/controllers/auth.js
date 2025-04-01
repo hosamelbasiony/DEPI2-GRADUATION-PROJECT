@@ -8,22 +8,41 @@ import jwt from "jsonwebtoken";
 import User from "../models/userModel.js";
 
 const complexityOptions = {
-    min: 3,
-    max: 10,
-    lowerCase: 0,
-    upperCase: 0,
-    numeric: 0,
-    symbol: 0,
-    requirementCount: 2,
+    min: 4,
+    max: 20,
+    lowerCase: 1,
+    upperCase: 1,
+    numeric: 1,
+    symbol: 1,
+    requirementCount: 6,
 };
+
+// const complexityOptions = {
+//     min: 3,
+//     max: 3,
+//     lowerCase: 0,
+//     upperCase: 0,
+//     numeric: 0,
+//     symbol: 0,
+//     requirementCount: 2,
+// };
 
 // passwordComplexity(complexityOptions).validate("aPassword123!");
 
 const validate = (data, abortEarly = false) => {
     const schema = Joi.object({
         email: Joi.string().email().required().label("Email"),
-        name: Joi.string().required().label("Name"),
-        // password: passwordComplexity(complexityOptions).required().label("Password")
+        // name: Joi.string().min(5).max(30).required().label("Name"),
+        name: Joi.string()
+            .min(5)
+            .max(30)
+            .empty()
+            .required()
+            .messages({
+                "string.min": `Name should be min {#limit} characters..`,
+                "string.empty": "Name cannot be an empty field",
+                "any.required": "Name is required"
+            }),
         password: passwordComplexity(complexityOptions).required().label("Password")
     });
     return schema.validate(data, { abortEarly });

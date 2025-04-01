@@ -68,7 +68,7 @@ function Login() {
           </span>
         )}
         {state.error && (
-          <span className="message bg-red-600">
+          <span data-cy="registration-error" className="message bg-red-600">
             {state.error}
           </span>
         )}
