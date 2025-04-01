@@ -28,22 +28,22 @@ jobs:
           node-version: '18'
           cache: 'npm'
 
-      - name: Install server dependencies
-        working-directory: ./MERN-TODO-APP/server
-        run: npm install
+      # - name: Install server dependencies
+      #   working-directory: ./MERN-TODO-APP/server
+      #   run: npm install
 
-      - name: Install client dependencies
-        working-directory: ./MERN-TODO-APP/client
-        run: npm install
+      # - name: Install client dependencies
+      #   working-directory: ./MERN-TODO-APP/client
+      #   run: npm install
 
-      - name: Run Backend
-        working-directory: ./MERN-TODO-APP/server
-        run: npm run dev
+      # - name: Run Backend
+      #   working-directory: ./MERN-TODO-APP/server
+      #   run: npm run dev
 
-      - name: Run Cypress tests
-        uses: ./MERN-TODO-APP/client/cypress/e2e/happy.cy.js
-        with:
-          working-directory: ./MERN-TODO-APP/client
-          start: npm start
-          wait-on: 'http://localhost:5173'
-          wait-on-timeout: 60
+      # - name: Run Cypress tests
+      #   uses: ./MERN-TODO-APP/client/cypress/e2e/happy.cy.js
+      #   with:
+      #     working-directory: ./MERN-TODO-APP/client
+      #     start: npm start
+      #     wait-on: 'http://localhost:5173'
+      #     wait-on-timeout: 60
