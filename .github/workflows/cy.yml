@@ -29,6 +29,7 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
+        working-directory: ./MERN-TODO-APP/server
         run: npm install
 
       - name: Run Backend
