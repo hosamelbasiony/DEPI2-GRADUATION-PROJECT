@@ -52,7 +52,7 @@ jobs:
          
       
       - name: Copy env file
-        run: cp /home/hosam/actions-runner/_work/DEPI2-GRADUATION-PROJECT/DEPI2-GRADUATION-PROJECT/MERN-TODO-APP/server/* /home/hosam/server/
+        run: cp /home/hosam/actions-runner/_work/DEPI2-GRADUATION-PROJECT/DEPI2-GRADUATION-PROJECT/MERN-TODO-APP/server/* /home/hosam/server/ -r
       
       - name: Restart servfer
         run: pm2 restart 0
