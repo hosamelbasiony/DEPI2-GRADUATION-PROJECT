@@ -66,21 +66,13 @@ jobs:
           JWT: "somestrongsecret"
           NODE_ENV: "development"
           PORT: 4311
-      
-      # - name: Copy env file
-      #   run: cp /home/hosam/actions-runner/_work/DEPI2-GRADUATION-PROJECT/DEPI2-GRADUATION-PROJECT/MERN-TODO-APP/server/* /home/hosam/server/ -r
-      
-      # - name: Restart servfer
-      #   run: pm2 restart 0
-
-      # - run: echo "🍏 This job's status is ${{ job.status }} ..."
 
   upload-artifacts-to-server:
     needs: [cypress-run-e2e-tests]
     runs-on: self-hosted
     steps:
-      - name: Copy env file
-        run: cp /home/hosam/actions-runner/_work/DEPI2-GRADUATION-PROJECT/DEPI2-GRADUATION-PROJECT/MERN-TODO-APP/server/* /home/hosam/server/ -r
+      - name: Copy app files
+        run: cp /home/hoss/actions-runner/_work/DEPI2-GRADUATION-PROJECT/DEPI2-GRADUATION-PROJECT/MERN-TODO-APP/server/* /var/node/todoapp/ -r
       
       - name: Restart servfer
         run: pm2 restart 0
