@@ -60,6 +60,18 @@ jobs:
     needs: [cypress-run-e2e-tests]
     runs-on: self-hosted
     steps:
+      - name: Install server dependencies
+        working-directory: ./MERN-TODO-APP/server
+        run: npm install
+
+      - name: Install client dependencies
+        working-directory: ./MERN-TODO-APP/client
+        run: npm install
+
+      - name: Build client
+        working-directory: ./MERN-TODO-APP/client
+        run: npm run build
+        
       - name: Copy app files
         run: cp /home/hoss/actions-runner/_work/DEPI2-GRADUATION-PROJECT/DEPI2-GRADUATION-PROJECT/MERN-TODO-APP/server/* /var/node/todoapp/ -r
       
