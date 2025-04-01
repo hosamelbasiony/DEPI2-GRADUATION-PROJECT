@@ -6,14 +6,14 @@ jobs:
     runs-on: ubuntu-22.04
     strategy:
       matrix:
-        node-version: [18.x, 20.x]
-        mongodb-version: ['7.0', '8.0']
+        node-version: [20.x]
+        mongodb-version: ['8.0']
 
     steps:
       - uses: actions/checkout@v4
         
       - name: Install Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           cache-dependency-path: ./MERN-TODO-APP/server/package-lock.json
           node-version: '20'
@@ -37,7 +37,7 @@ jobs:
           mongodb-version: ${{ matrix.mongodb-version }}
 
       - name: Cypress run
-        uses: cypress-io/github-action@v3
+        uses: cypress-io/github-action@v4
         with:
           working-directory: ./MERN-TODO-APP/server
           browser: chrome
