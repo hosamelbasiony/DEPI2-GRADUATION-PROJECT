@@ -113,3 +113,8 @@
 * {
   font-family: "Poppins", "El Messiri";
 }
+
+.main-title {
+  border-bottom: 1px solid #efefef;
+  padding-bottom: 5px;
+}

@@ -6,11 +6,19 @@ import AuthRoute from "./routes/auth.js";
 import TodoRoute from "./routes/todo.js";
 import morgan from "morgan";
 import cors from "cors";
+import path from "path";
 
 dotenv.config();
 
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 const app = express();
-const PORT = 3011;
+app.use('/', express.static(path.join(__dirname, 'public')));
+const PORT = 4311;
 
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -32,6 +40,8 @@ app.use((err, req, res, next) => {
     const error = err.message || "Inernal server error";
     res.status(statusCode).json({error})
 });
+
+app.use('*', express.static(path.join(__dirname, 'public')));
 
 app.listen(PORT, () => {
     console.log(`Server App Running on http://localhost:${PORT}`);

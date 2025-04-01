@@ -7,11 +7,24 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import User from "../models/userModel.js";
 
+const complexityOptions = {
+    min: 3,
+    max: 10,
+    lowerCase: 0,
+    upperCase: 0,
+    numeric: 0,
+    symbol: 0,
+    requirementCount: 2,
+};
+
+// passwordComplexity(complexityOptions).validate("aPassword123!");
+
 const validate = (data, abortEarly = false) => {
     const schema = Joi.object({
         email: Joi.string().email().required().label("Email"),
         name: Joi.string().required().label("Name"),
-        password: passwordComplexity().required().label("Password")
+        // password: passwordComplexity(complexityOptions).required().label("Password")
+        password: passwordComplexity(complexityOptions).required().label("Password")
     });
     return schema.validate(data, { abortEarly });
 };
@@ -19,7 +32,7 @@ const validate = (data, abortEarly = false) => {
 const validateLogin = (data, abortEarly = false) => {
     const schema = Joi.object({
         email: Joi.string().email().required().label("Email"),
-        password: passwordComplexity().required().label("Password")
+        password: passwordComplexity(complexityOptions).required().label("Password")
     });
     return schema.validate(data, { abortEarly });
 };
@@ -107,5 +120,5 @@ export async function logout(req, res, next) {
 };
 
 export async function profile(req, res, next) {
-    res.json({user: req.user});
+    res.json({ user: req.user });
 };

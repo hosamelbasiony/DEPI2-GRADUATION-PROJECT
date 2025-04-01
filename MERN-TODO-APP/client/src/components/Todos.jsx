@@ -37,7 +37,7 @@ const Todos = () => {
   }, []);
 
   if (!authenticated) {
-    return <></>;
+    return <>Unauthorized</>;
   }
   if (error) {
     return <h1 className="text-2xl py-2 text-center">Something went wrong</h1>;
@@ -199,13 +199,13 @@ const Todos = () => {
   };
 
   return (
-    <div className="mx-auto mt-20 max-w-lg px-4 w-full flex flex-col gap-6">
+    <div className="mx-auto mt-20 max-w-xl px-4 w-full flex flex-col gap-6">
       <div>
         {/* <CircleUserRound /> */}
         <Profile />
       </div>
       <h1 className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 font-bold text-4xl text-center mb-4 text-transparent bg-clip-text">
-        Todo App
+        DEPI Todos
       </h1>
       <form onSubmit={hndlAddTodo} className="flex gap-4 items-center">
         <Input
@@ -216,7 +216,7 @@ const Todos = () => {
           required
           className="shadow-md"
         ></Input>
-        <button className="h-9 rounded-md border border-input bg-transparent px-4 text-base shadow-md flex items-center hover:bg-purple-700 hover:text-white transition ease-linear group-[]:">
+        <button data-cy="add-todo" className="h-9 rounded-md border border-input bg-transparent px-4 text-base shadow-md flex items-center hover:bg-purple-700 hover:text-white transition ease-linear group-[]:">
           <PlusIcon
             size={20}
             className="transition ease-linear group-hover:stroke-white"
@@ -233,6 +233,7 @@ const Todos = () => {
               key={index}
             >
               <span
+                data-cy="todo-entry"
                 className={`flex-1 px-3 ${
                   todo.isCompleted && "line-through text-[#63657b]"
                 }`}
@@ -241,6 +242,7 @@ const Todos = () => {
               </span>
               <div className="px-3 flex gap-4">
                 <CheckCircle
+                  data-cy="complete-todo"
                   className={`transition ease-in-out hover:cursor-pointer hover:text-purple-700 ${
                     todo.isCompleted ? "text-primary" : "text-slate-300 "
                   }`}
@@ -248,6 +250,7 @@ const Todos = () => {
                   onClick={() => hndlComplete(todo)}
                 />
                 <Trash2Icon
+                  data-cy="delete-todo"
                   className={`hover:text-purple-700 transition ease-linear hover:cursor-pointer text-slate-300`}
                   size={20}
                   onClick={() => deleteTodo(todo._id)}

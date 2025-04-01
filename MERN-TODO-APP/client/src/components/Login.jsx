@@ -9,8 +9,10 @@ function Login() {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    email: "hosam@home.com",
-    password: "dev@dmin406A",
+    email: "depi2_1743508892353@egypt.eg",
+    password: "depi2",
+    // email: "hosam@home.com",
+    // password: "dev@dmin406A",
   });
 
   const [state, formAction, isPending] = useActionState(login, {
@@ -32,10 +34,12 @@ function Login() {
 
   return (
     <div className="h-screen flex justify-center items-center transform -translate-y-16">
+    
       <form
         action={formAction}
         className="flex flex-col gap-6 max-w-xl w-full px-8"
       >
+        <h1 className="main-title text-4xl text-center font-bold mt-8 mb-6">DEPI Todos</h1>
         <div className="flex flex-col gap-2 ">
           <Label>Email</Label>
           <Input
@@ -44,6 +48,7 @@ function Login() {
             placeholder="Enter email"
             value={formData.email}
             onChange={hndlChange}
+            data-cy="email"
           ></Input>
         </div>
         <div className="flex flex-col gap-2 ">
@@ -54,6 +59,7 @@ function Login() {
             placeholder="Enter password"
             value={formData.password}
             onChange={hndlChange}
+            data-cy="password"
           ></Input>
         </div>
         {state.success && (
@@ -66,7 +72,7 @@ function Login() {
             {state.error}
           </span>
         )}
-        <Button disabled={isPending}>
+        <Button disabled={isPending} data-cy="login">
           {isPending ? "Logging in" : "Login"}
         </Button>
         <span className="text-[#63657b] text-center">

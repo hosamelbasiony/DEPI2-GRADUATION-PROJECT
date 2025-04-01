@@ -9,9 +9,12 @@ function Register() {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    email: "hosam@home.com",
-    name: "Hosam Mohammad",
-    password: "dev@dmin406A",
+    email: "",
+    name: "",
+    password: "",
+    // email: "hosam@home.com",
+    // name: "Hosam Mohammad",
+    // password: "dev@dmin406A",
   });
 
   const [state, formAction, isPending] = useActionState(register, {
@@ -39,6 +42,7 @@ function Register() {
         action={formAction}
         className="flex flex-col gap-6 max-w-xl w-full px-8"
       >
+        <h1 className="main-title text-4xl text-center font-bold mt-28 mb-4">DEPI Todos</h1>
         <div className="flex flex-col gap-2 ">
           <Label>Email</Label>
           <Input
@@ -47,6 +51,7 @@ function Register() {
             placeholder="Enter email"
             value={formData.email}
             onChange={hndlChange}
+            data-cy="email"
           ></Input>
         </div>
         <div className="flex flex-col gap-2 ">
@@ -57,6 +62,7 @@ function Register() {
             placeholder="Enter name"
             value={formData.name}
             onChange={hndlChange}
+            data-cy="name"
           ></Input>
         </div>
         <div className="flex flex-col gap-2 ">
@@ -67,6 +73,7 @@ function Register() {
             placeholder="Enter password"
             value={formData.password}
             onChange={hndlChange}
+            data-cy="password"
           ></Input>
         </div>
         {state.success && (
@@ -75,11 +82,9 @@ function Register() {
           </span>
         )}
         {state.error && (
-          <span className="message bg-red-600">
-            {state.error}
-          </span>
+          <span className="message bg-red-600">{state.error}</span>
         )}
-        <Button disabled={isPending}>
+        <Button data-cy="register" disabled={isPending}>
           {isPending ? "Registering" : "Register"}
         </Button>
         <span className="text-[#63657b] text-center">

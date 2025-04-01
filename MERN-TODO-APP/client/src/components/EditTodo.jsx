@@ -1,4 +1,3 @@
-import React from "react";
 import { ClipboardPenLineIcon } from "lucide-react";
 import {
   Dialog,
@@ -26,6 +25,7 @@ function EditTodo({ title, id, hndlUpdate }) {
     <Dialog>
       <DialogTrigger asChild>
         <ClipboardPenLineIcon
+          data-cy="edit-todo"
           className={`hover:text-purple-700 transition ease-linear hover:cursor-pointer text-slate-300`}
           size={20}
         />
@@ -42,6 +42,7 @@ function EditTodo({ title, id, hndlUpdate }) {
           <input type="hidden" value={id} id="id" name="id" />
           <Label htmlFor="title">Previous Todo</Label>
           <Input
+            data-cy="edit-todo"
             id="title"
             name="title"
             value={updatedTitle}
@@ -50,7 +51,7 @@ function EditTodo({ title, id, hndlUpdate }) {
           />
           <DialogFooter>
             <DialogClose asChild>
-              <Button onClick={() => hndlOnclick() }>Save changes</Button>
+              <Button data-cy="update-todo" onClick={() => hndlOnclick() }>Save changes</Button>
             </DialogClose>
           </DialogFooter>
         </div>

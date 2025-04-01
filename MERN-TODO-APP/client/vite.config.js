@@ -10,6 +10,10 @@ const __dirname = dirname(__filename);
 
 // https://vite.dev/config/
 export default defineConfig({
+  build: {
+    outDir: '../server/public',
+    emptyOutDir: true, // also necessary
+  },
   plugins: [react(), tailwindcss(),],
   resolve: {
     alias: {
