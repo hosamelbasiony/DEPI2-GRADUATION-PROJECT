@@ -41,7 +41,7 @@ jobs:
         with:
           working-directory: ./MERN-TODO-APP/client
           browser: chrome
-          start: npm run dev
+          # start: npm run dev
           wait-on: "http://localhost:4311"
         env:
           MONGO_URI: mongodb://127.0.0.1:27017/Todos
