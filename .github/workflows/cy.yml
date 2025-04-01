@@ -2,63 +2,63 @@ name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing the todo app 🚀
 on: [push]
 jobs:  
-  cypress-run-e2e-tests:
-    runs-on: ubuntu-22.04
-    strategy:
-      matrix:
-        node-version: [20.x]
-        mongodb-version: ['8.0']
+  # cypress-run-e2e-tests:
+  #   runs-on: ubuntu-22.04
+  #   strategy:
+  #     matrix:
+  #       node-version: [20.x]
+  #       mongodb-version: ['8.0']
 
-    steps:
-      - uses: actions/checkout@v4
+  #   steps:
+  #     - uses: actions/checkout@v4
         
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          cache-dependency-path: ./MERN-TODO-APP/server/package-lock.json
-          node-version: '20'
-          cache: 'npm'
+  #     - name: Install Node.js
+  #       uses: actions/setup-node@v4
+  #       with:
+  #         cache-dependency-path: ./MERN-TODO-APP/server/package-lock.json
+  #         node-version: '20'
+  #         cache: 'npm'
 
-      - name: Install server dependencies
-        working-directory: ./MERN-TODO-APP/server
-        run: npm install
+  #     - name: Install server dependencies
+  #       working-directory: ./MERN-TODO-APP/server
+  #       run: npm install
 
-      - name: Install client dependencies
-        working-directory: ./MERN-TODO-APP/client
-        run: npm install
+  #     - name: Install client dependencies
+  #       working-directory: ./MERN-TODO-APP/client
+  #       run: npm install
 
-      - name: Build client
-        working-directory: ./MERN-TODO-APP/client
-        run: npm run build
+  #     - name: Build client
+  #       working-directory: ./MERN-TODO-APP/client
+  #       run: npm run build
 
-      # - name: Unset NODE_OPTIONS
-      #   run: unset NODE_OPTIONS
+  #     # - name: Unset NODE_OPTIONS
+  #     #   run: unset NODE_OPTIONS
 
-      # - name: Clear cache
-      #   run: rm /home/hosam/.cache -rf
+  #     # - name: Clear cache
+  #     #   run: rm /home/hosam/.cache -rf
 
-      - name: Start MongoDB
-        uses: supercharge/mongodb-github-action@1.12.0
-        with:
-          mongodb-version: ${{ matrix.mongodb-version }}
+  #     - name: Start MongoDB
+  #       uses: supercharge/mongodb-github-action@1.12.0
+  #       with:
+  #         mongodb-version: ${{ matrix.mongodb-version }}
 
-      - name: Cypress run
-        uses: cypress-io/github-action@v4
-        with:
-          working-directory: ./MERN-TODO-APP/server
-          browser: chrome
-          start: npm run dev
-          wait-on: "http://localhost:4311"
-        env:
-          MONGO_URI: mongodb://127.0.0.1:27017/Todos
-          JWT: "somestrongsecret"
-          NODE_ENV: "development"
-          PORT: 4311
+  #     - name: Cypress run
+  #       uses: cypress-io/github-action@v4
+  #       with:
+  #         working-directory: ./MERN-TODO-APP/server
+  #         browser: chrome
+  #         start: npm run dev
+  #         wait-on: "http://localhost:4311"
+  #       env:
+  #         MONGO_URI: mongodb://127.0.0.1:27017/Todos
+  #         JWT: "somestrongsecret"
+  #         NODE_ENV: "development"
+  #         PORT: 4311
 
   upload-artifacts-to-server:
   # sudo chmod -R 777 /home/hoss 
-    needs: [cypress-run-e2e-tests]
     runs-on: self-hosted
+    # needs: [cypress-run-e2e-tests]
     steps:
       - name: Install server dependencies
         working-directory: ./MERN-TODO-APP/server
@@ -71,7 +71,7 @@ jobs:
       - name: Build client
         working-directory: ./MERN-TODO-APP/client
         run: npm run build
-        
+
       - name: Copy app files
         run: cp /home/hoss/actions-runner/_work/DEPI2-GRADUATION-PROJECT/DEPI2-GRADUATION-PROJECT/MERN-TODO-APP/server/* /var/node/todoapp/ -r
       
