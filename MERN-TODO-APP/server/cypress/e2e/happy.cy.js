@@ -182,6 +182,8 @@ describe('Authentication with proper creds', () => {
       .should('exist')
       .clear()
       .type('Test Todo Updated')
+      
+    cy.wait(500)
 
     cy.get('button[data-cy="update-todo"]')
       .should('exist')
