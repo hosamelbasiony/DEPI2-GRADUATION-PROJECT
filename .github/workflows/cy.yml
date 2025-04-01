@@ -45,12 +45,21 @@ jobs:
           sleep 5 &&
           curl http://localhost:4311 -I
 
-      - name: Run Cypress tests
-        uses: ./MERN-TODO-APP/client/cypress/e2e/happy.cy.js
+      - name: Cypress run
+        uses: cypress-io/github-action@v3
         with:
           working-directory: ./MERN-TODO-APP/client
-          start: npm start
-          wait-on: 'http://localhost:5173'
-          wait-on-timeout: 60
+          browser: chrome
+          # build: npm build
+          start: npm run dev
+          wait-on: "http://localhost:5173"
+
+      # - name: Run Cypress tests
+      #   uses: ./MERN-TODO-APP/client/cypress/e2e/happy.cy.js
+      #   with:
+      #     working-directory: ./MERN-TODO-APP/client
+      #     start: npm start
+      #     wait-on: 'http://localhost:5173'
+      #     wait-on-timeout: 60
       
       - run: echo "🍏 This job's status is ${{ job.status }}."
