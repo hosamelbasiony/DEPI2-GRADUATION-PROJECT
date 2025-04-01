@@ -61,15 +61,15 @@ jobs:
     # needs: [cypress-run-e2e-tests]
     steps:
       - name: Install server dependencies
-        working-directory: ./MERN-TODO-APP/server
+        working-directory: MERN-TODO-APP/server
         run: npm install
 
       - name: Install client dependencies
-        working-directory: ./MERN-TODO-APP/client
+        working-directory: MERN-TODO-APP/client
         run: npm install
 
       - name: Build client
-        working-directory: ./MERN-TODO-APP/client
+        working-directory: MERN-TODO-APP/client
         run: npm run build
 
       - name: Copy app files
