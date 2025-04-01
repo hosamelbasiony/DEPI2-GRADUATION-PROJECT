@@ -223,6 +223,6 @@ describe('Authentication with proper creds', () => {
 
     cy.wait(1000)
     cy.get('span[data-cy="todo-entry"]')
-      .should('have.length', 0)
+      .should('have.length', 10)
   })
 })
