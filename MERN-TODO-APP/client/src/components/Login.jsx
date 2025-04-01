@@ -9,8 +9,8 @@ function Login() {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    email: "depi2_1743508892353@egypt.eg",
-    password: "depi2",
+    email: "",
+    password: "",
     // email: "hosam@home.com",
     // password: "dev@dmin406A",
   });
