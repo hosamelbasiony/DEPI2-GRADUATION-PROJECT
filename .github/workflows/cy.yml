@@ -2,15 +2,15 @@ name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing the todo app 🚀
 on: [push]
 jobs:  
-  clear-github-caches:
-    name: Delete all caches
-    runs-on: ubuntu-20.04
+  # clear-github-caches:
+  #   name: Delete all caches
+  #   runs-on: ubuntu-20.04
 
-    steps:
-      - name: Clear caches
-        uses: easimon/wipe-cache@main
-        with:
-          dry-run: 'true'
+  #   steps:
+  #     - name: Clear caches
+  #       uses: easimon/wipe-cache@main
+  #       with:
+  #         dry-run: 'true'
 
   cypress-run-e2e-tests:
     # runs-on: ubuntu-22.04
