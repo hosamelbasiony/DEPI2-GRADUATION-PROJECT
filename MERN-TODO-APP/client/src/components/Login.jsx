@@ -39,7 +39,7 @@ function Login() {
         action={formAction}
         className="flex flex-col gap-6 max-w-xl w-full px-8"
       >
-        <h1 className="main-title text-4xl text-center font-bold mt-8 mb-6">DEPI Todos</h1>
+        <h1 className="main-title text-4xl text-center font-bold mt-8 mb-6">DEPI2 Todos</h1>
         <div className="flex flex-col gap-2 ">
           <Label>Email</Label>
           <Input
