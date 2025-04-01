@@ -18,7 +18,7 @@ const __dirname = dirname(__filename);
 
 const app = express();
 app.use('/', express.static(path.join(__dirname, 'public')));
-const PORT = 4311;
+const PORT = process.env.PORT || 4311;
 
 app.use(bodyParser.json());
 app.use(cookieParser());

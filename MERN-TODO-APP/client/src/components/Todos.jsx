@@ -238,7 +238,7 @@ const Todos = () => {
                   todo.isCompleted && "line-through text-[#63657b]"
                 }`}
               >
-                {todo.title}
+                xxx {todo.title}
               </span>
               <div className="px-3 flex gap-4">
                 <CheckCircle

@@ -43,11 +43,12 @@ jobs:
           working-directory: ./MERN-TODO-APP/server
           browser: chrome
           start: npm run dev
-          wait-on: "http://localhost:4311"
+          wait-on: "http://localhost:4312"
         env:
           MONGO_URI: mongodb://127.0.0.1:27017/Todos
           JWT: "somestrongsecret"
           NODE_ENV: "development"
+          PORT: 4312
          
       
       - name: Copy env file
