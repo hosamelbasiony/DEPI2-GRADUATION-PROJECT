@@ -37,22 +37,26 @@ jobs:
         working-directory: ./MERN-TODO-APP/client
         run: npm install
 
-      - name: Run Backend
-        working-directory: ./MERN-TODO-APP/server
-        run: |
-          npm start &
-          sleep 5 &&
-          curl http://localhost:4311 -I
+      - name: Build client
+        working-directory: ./MERN-TODO-APP/client
+        run: npm run build
 
-      - name: Test Backend
-        run: curl http://localhost:4311
+      # - name: Run Backend
+      #   working-directory: ./MERN-TODO-APP/server
+      #   run: |
+      #     npm start &
+      #     sleep 5 &&
+      #     curl http://localhost:4311 -I
 
-      # - name: Cypress run
-      #   uses: cypress-io/github-action@v3
-      #   with:
-      #     working-directory: ./MERN-TODO-APP/client
-      #     browser: chrome
-      #     start: npm run dev
-      #     wait-on: "http://localhost:5173"
+      # - name: Test Backend
+      #   run: curl http://localhost:4311
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v3
+        with:
+          working-directory: ./MERN-TODO-APP/server
+          browser: chrome
+          start: npm run dev
+          wait-on: "http://localhost:4311"
       
       - run: echo "🍏 This job's status is ${{ job.status }}."
