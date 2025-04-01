@@ -49,6 +49,7 @@ jobs:
         uses: cypress-io/github-action@v3
         with:
           working-directory: ./MERN-TODO-APP/client
+          project: ./cypress/e2e
           browser: chrome
           # build: npm build
           start: npm run dev
