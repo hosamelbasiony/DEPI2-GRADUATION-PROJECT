@@ -36,7 +36,7 @@ jobs:
         run: npm run dev
 
       - name: Run Cypress tests
-        uses: cypress-io/github-action@v5
+        uses: cypress open
         with:
           working-directory: ./MERN-TODO-APP/client
           start: npm start
