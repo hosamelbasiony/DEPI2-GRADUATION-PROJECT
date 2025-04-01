@@ -6,6 +6,6 @@ export default defineConfig({
       // implement node event listeners here
     },
     supportFile: false,
-    baseUrl: 'http://localhost:4312',
+    baseUrl: 'http://localhost:4311',
   },
 });

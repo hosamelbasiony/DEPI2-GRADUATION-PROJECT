@@ -60,12 +60,12 @@ jobs:
           working-directory: ./MERN-TODO-APP/server
           browser: chrome
           start: npm run dev
-          wait-on: "http://localhost:4312"
+          wait-on: "http://localhost:4311"
         env:
           MONGO_URI: mongodb://127.0.0.1:27017/Todos
           JWT: "somestrongsecret"
           NODE_ENV: "development"
-          PORT: 4312
+          PORT: 4311
       
       # - name: Copy env file
       #   run: cp /home/hosam/actions-runner/_work/DEPI2-GRADUATION-PROJECT/DEPI2-GRADUATION-PROJECT/MERN-TODO-APP/server/* /home/hosam/server/ -r
