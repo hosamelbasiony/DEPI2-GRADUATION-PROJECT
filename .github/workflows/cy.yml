@@ -2,27 +2,27 @@ name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing the todo app 🚀
 on: [push]
 jobs:
-  # Explore-GitHub-Actions:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-  #     - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-  #     - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-  #     - name: Check out repository code
-  #       uses: actions/checkout@v4
-  #     - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-  #     - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-  #     - name: List files in the repository
-  #       run: |
-  #         ls ${{ github.workspace }}
-  #     - run: echo "🍏 This job's status is ${{ job.status }}."
+  Try-github-actions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+      - run: echo "🍏 This job's status is ${{ job.status }}."
   
   cypress-run:
     runs-on: ubuntu-22.04
     strategy:
       matrix:
-        node-version: [20.x, 22.x]
-        mongodb-version: ['6.0', '7.0', '8.0']
+        node-version: [20.x]
+        mongodb-version: ['8.0']
 
     steps:
       - uses: actions/checkout@v4
@@ -50,16 +50,6 @@ jobs:
         uses: supercharge/mongodb-github-action@1.12.0
         with:
           mongodb-version: ${{ matrix.mongodb-version }}
-
-      # - name: Run Backend
-      #   working-directory: ./MERN-TODO-APP/server
-      #   run: |
-      #     npm start &
-      #     sleep 5 &&
-      #     curl http://localhost:4311 -I
-
-      # - name: Test Backend
-      #   run: curl http://localhost:4311
 
       - name: Cypress run
         uses: cypress-io/github-action@v3
