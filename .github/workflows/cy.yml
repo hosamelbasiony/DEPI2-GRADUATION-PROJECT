@@ -16,3 +16,30 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
+  
+  cypress-run:
+    runs-on: ubuntu-22.04
+    steps:
+      - run: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Backend
+        working-directory: ./MERN-TODO-APP/server
+        run: npm run dev
+
+      - name: Run Cypress tests
+        uses: cypress-io/github-action@v5
+        working-directory: ./MERN-TODO-APP/client
+        with:
+          start: npm start
+          wait-on: 'http://localhost:5173'
+          wait-on-timeout: 60
