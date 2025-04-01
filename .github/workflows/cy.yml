@@ -39,7 +39,7 @@ jobs:
 
       - name: Run Backend
         working-directory: ./MERN-TODO-APP/server
-        run: npm run dev
+        run: npm start
 
       # - name: Run Cypress tests
       #   uses: ./MERN-TODO-APP/client/cypress/e2e/happy.cy.js
