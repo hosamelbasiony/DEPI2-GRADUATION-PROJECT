@@ -54,3 +54,30 @@ jobs:
           JWT: "somestrongsecret"
           NODE_ENV: "development"
           PORT: 4311
+
+  upload-artifacts-to-server:
+  # sudo chmod -R 777 /home/hoss 
+    runs-on: self-hosted
+    needs: [cypress-run-e2e-tests]
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Install server dependencies
+        working-directory: MERN-TODO-APP/server
+        run: npm install
+
+      - name: Install client dependencies
+        working-directory: MERN-TODO-APP/client
+        run: npm install
+
+      - name: Build client
+        working-directory: MERN-TODO-APP/client
+        run: npm run build
+
+      - name: Copy app files
+        run: cp /home/hoss/actions-runner/_work/DEPI2-GRADUATION-PROJECT/DEPI2-GRADUATION-PROJECT/MERN-TODO-APP/server/* /var/node/todoapp/ -r
+      
+      - name: Restart servfer
+        run: pm2 restart 0
+
+      - run: echo "🍏 This job's status is ${{ job.status }} ..."
