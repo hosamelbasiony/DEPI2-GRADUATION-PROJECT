@@ -1,5 +1,5 @@
 name: GitHub Actions Demo
-run-name: ${{ github.actor }} is testing the todo app 🚀
+run-name: ${{ github.actor }} is testing and deploying the todo app 🚀
 on: [push]
 jobs:  
   cypress-run-e2e-tests:
