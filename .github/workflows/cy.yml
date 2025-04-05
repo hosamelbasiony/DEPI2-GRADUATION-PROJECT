@@ -50,10 +50,12 @@ jobs:
         uses: matt-ball/newman-action@master
         with:
           working-directory: ./MERN-TODO-APP/server
-          collection: "Postman-resources/DEPI 2.postman_collection.json"
-          environment: "Postman-resources/DEPI 2.postman_environment.json"
+          collection: postman_collection.json
+          environment: postman_environment.json
           start: npm run dev
           wait-on: "http://localhost:4311"
+        env:
+          baseUrl: https://todo-testing.tarqim.info/api
 
       - name: Cypress run
         uses: cypress-io/github-action@v4
