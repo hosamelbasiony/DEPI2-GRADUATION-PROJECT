@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "cypress": "^14.2.1",
+    "newman": "^6.2.1",
     "nodemon": "^3.1.9"
   },
   "type": "module"

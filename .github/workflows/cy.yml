@@ -31,6 +31,10 @@ jobs:
         working-directory: ./MERN-TODO-APP/client
         run: npm run build
 
+      - name: Run newman tests
+        working-directory: ./Postman-resources
+        run: newman run DEPI\ 2.postman_collection.json -e DEPI\ 2.postman_environment.json
+
       # - name: Unset NODE_OPTIONS
       #   run: unset NODE_OPTIONS
 
