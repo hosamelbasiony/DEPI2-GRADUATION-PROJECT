@@ -49,7 +49,7 @@ jobs:
       - name: Run newman tests
         uses: matt-ball/newman-action@master
         with:
-          # working-directory: ./Postman-resources
+          working-directory: ./MERN-TODO-APP/server
           collection: "./Postman-resources/DEPI 2.postman_collection.json"
           environment: "./Postman-resources/DEPI 2.postman_environment.json"
           start: npm run dev
