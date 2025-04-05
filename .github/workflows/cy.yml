@@ -42,20 +42,20 @@ jobs:
         with:
           mongodb-version: ${{ matrix.mongodb-version }}
 
-      # - name: Run newman tests
-      #   working-directory: ./Postman-resources
-      #   run: newman run DEPI\ 2.postman_collection.json -e DEPI\ 2.postman_environment.json
-
       - name: Run newman tests
-        uses: matt-ball/newman-action@master
-        with:
-          working-directory: ./MERN-TODO-APP/server
-          collection: ./MERN-TODO-APP/server/postman_collection.json
-          environment: ./MERN-TODO-APP/server/postman_environment.json
-          start: npm run dev
-          wait-on: "http://localhost:4311"
-        env:
-          baseUrl: https://todo-testing.tarqim.info/api
+        working-directory: ./Postman-resources
+        run: npm run dev && newman run ./Postman-resources/DEPI\ 2.postman_collection.json -e ./Postman-resources/DEPI\ 2.postman_environment.json
+
+      # - name: Run newman tests
+      #   uses: matt-ball/newman-action@master
+      #   with:
+      #     working-directory: ./MERN-TODO-APP/server
+      #     collection: ./MERN-TODO-APP/server/postman_collection.json
+      #     environment: ./MERN-TODO-APP/server/postman_environment.json
+      #     start: npm run dev
+      #     wait-on: "http://localhost:4311"
+      #   env:
+      #     baseUrl: https://todo-testing.tarqim.info/api
 
       - name: Cypress run
         uses: cypress-io/github-action@v4
