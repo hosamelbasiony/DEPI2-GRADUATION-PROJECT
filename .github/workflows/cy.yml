@@ -48,12 +48,9 @@ jobs:
 
       - name: Run newman tests
         run: |
-          nodemon ./MERN-TODO-APP/server/index.js
-          newman run ./Postman-resources/DEPI\ 2.postman_collection.json -e ./Postman-resources/DEPI\ 2.postman_environment.json
-
-      # - name: Run newman tests
-      #   working-directory: ./Postman-resources
-      #   run: newman run DEPI\ 2.postman_collection.json -e DEPI\ 2.postman_environment.json
+          node ./MERN-TODO-APP/server/index.js
+          sleep 10
+          
 
       - name: Cypress run
         uses: cypress-io/github-action@v4
