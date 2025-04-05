@@ -31,10 +31,6 @@ jobs:
         working-directory: ./MERN-TODO-APP/client
         run: npm run build
 
-      - name: Run newman tests
-        working-directory: ./Postman-resources
-        run: newman run DEPI\ 2.postman_collection.json -e DEPI\ 2.postman_environment.json
-
       # - name: Unset NODE_OPTIONS
       #   run: unset NODE_OPTIONS
 
@@ -45,6 +41,10 @@ jobs:
         uses: supercharge/mongodb-github-action@1.12.0
         with:
           mongodb-version: ${{ matrix.mongodb-version }}
+
+      - name: Run newman tests
+        working-directory: ./Postman-resources
+        run: newman run DEPI\ 2.postman_collection.json -e DEPI\ 2.postman_environment.json
 
       - name: Cypress run
         uses: cypress-io/github-action@v4
