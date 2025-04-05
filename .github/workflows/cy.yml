@@ -45,6 +45,11 @@ jobs:
       - name: Run newman tests
         run: |
           node ./MERN-TODO-APP/server/index.js & newman run ./Postman-resources/DEPI\ 2.postman_collection.json -e ./Postman-resources/DEPI\ 2.postman_environment.json
+        env:
+          MONGO_URI: mongodb://127.0.0.1:27017/Todos
+          JWT: "somestrongsecret"
+          NODE_ENV: "development"
+          PORT: 4311
 
       - name: Cypress run
         uses: cypress-io/github-action@v4
