@@ -42,7 +42,7 @@ jobs:
         with:
           mongodb-version: ${{ matrix.mongodb-version }}
 
-      - name: Run newman tests
+      - name: API newman tests
         run: |
           node ./MERN-TODO-APP/server/index.js & newman run ./Postman-resources/DEPI\ 2.postman_collection.json -e ./Postman-resources/DEPI\ 2.postman_environment.json
         env:
@@ -51,7 +51,7 @@ jobs:
           NODE_ENV: "development"
           PORT: 4311
 
-      - name: Cypress run
+      - name: UI testing - cypress
         uses: cypress-io/github-action@v4
         with:
           working-directory: ./MERN-TODO-APP/server
