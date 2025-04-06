@@ -2,7 +2,42 @@ name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing and deploying the todo app 🚀
 on: [push]
 jobs:  
-  api-ui-e2e-tests:
+  newman-api-tests:
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        node-version: [20.x]
+        mongodb-version: ['8.0']
+
+    steps:
+      - uses: actions/checkout@v4
+        
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          cache-dependency-path: ./MERN-TODO-APP/server/package-lock.json
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install server dependencies
+        working-directory: ./MERN-TODO-APP/server
+        run: npm install
+
+      - name: Start MongoDB
+        uses: supercharge/mongodb-github-action@1.12.0
+        with:
+          mongodb-version: ${{ matrix.mongodb-version }}
+
+      - name: API newman tests
+        run: |
+          node ./MERN-TODO-APP/server/index.js & newman run ./Postman-resources/DEPI\ 2.postman_collection.json -e ./Postman-resources/DEPI\ 2.postman_environment.json
+        env:
+          MONGO_URI: mongodb://127.0.0.1:27017/Todos
+          JWT: "somestrongsecret"
+          NODE_ENV: "development"
+          PORT: 4311
+          
+  cypress-ui-e2e-tests:
     runs-on: ubuntu-22.04
     strategy:
       matrix:
@@ -64,11 +99,12 @@ jobs:
           NODE_ENV: "development"
           PORT: 4312
 
+
   upload-artifacts-to-server:
   # sudo chmod -R 777 /home/hoss 
   # sudo chmod -R 777 /var/node/todoapp
     runs-on: self-hosted
-    needs: [api-ui-e2e-tests]
+    needs: [cypress-ui-e2e-tests , newman-api-tests]
     steps:
       - uses: actions/checkout@v4
 
