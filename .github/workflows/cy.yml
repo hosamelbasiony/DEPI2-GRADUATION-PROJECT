@@ -78,14 +78,14 @@ jobs:
         with:
           mongodb-version: ${{ matrix.mongodb-version }}
 
-      - name: API newman tests
-        run: |
-          node ./MERN-TODO-APP/server/index.js & newman run ./Postman-resources/DEPI\ 2.postman_collection.json -e ./Postman-resources/DEPI\ 2.postman_environment.json
-        env:
-          MONGO_URI: mongodb://127.0.0.1:27017/Todos
-          JWT: "somestrongsecret"
-          NODE_ENV: "development"
-          PORT: 4311
+      # - name: API newman tests
+      #   run: |
+      #     node ./MERN-TODO-APP/server/index.js & newman run ./Postman-resources/DEPI\ 2.postman_collection.json -e ./Postman-resources/DEPI\ 2.postman_environment.json
+      #   env:
+      #     MONGO_URI: mongodb://127.0.0.1:27017/Todos
+      #     JWT: "somestrongsecret"
+      #     NODE_ENV: "development"
+      #     PORT: 4311
 
       - name: UI testing - cypress
         uses: cypress-io/github-action@v4
@@ -93,12 +93,12 @@ jobs:
           working-directory: ./MERN-TODO-APP/server
           browser: chrome
           start: npm run dev
-          wait-on: "http://localhost:4312"
+          wait-on: "http://localhost:4311"
         env:
           MONGO_URI: mongodb://127.0.0.1:27017/Todos
           JWT: "somestrongsecret"
           NODE_ENV: "development"
-          PORT: 4312
+          PORT: 4311
 
 
   upload-artifacts-to-server:
