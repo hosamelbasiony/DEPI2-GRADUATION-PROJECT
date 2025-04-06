@@ -39,6 +39,7 @@ jobs:
           
   cypress-ui-e2e-tests:
     runs-on: ubuntu-22.04
+    needs: [newman-api-tests]
     strategy:
       matrix:
         node-version: [20.x]
