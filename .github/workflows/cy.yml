@@ -100,7 +100,6 @@ jobs:
           NODE_ENV: "development"
           PORT: 4311
 
-
   upload-artifacts-to-server:
   # sudo chmod -R 777 /home/hoss 
   # sudo chmod -R 777 /var/node/todoapp

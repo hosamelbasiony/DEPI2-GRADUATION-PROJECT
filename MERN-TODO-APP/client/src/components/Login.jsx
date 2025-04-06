@@ -12,7 +12,7 @@ function Login() {
     email: "",
     password: "",
     // email: "hosam@home.com",
-    // password: "dev@dmin406A",
+    // password: "ASDasd@123",
   });
 
   const [state, formAction, isPending] = useActionState(login, {
@@ -39,7 +39,7 @@ function Login() {
         action={formAction}
         className="flex flex-col gap-6 max-w-xl w-full px-8"
       >
-        <h1 className="main-title text-4xl text-center font-bold mt-8 mb-6">DEPI-2 Todos</h1>
+        <h1 className="main-title text-4xl text-center font-bold mt-8 mb-6">DEPI-2 TODOS</h1>
         <div className="flex flex-col gap-2 ">
           <Label>Email</Label>
           <Input

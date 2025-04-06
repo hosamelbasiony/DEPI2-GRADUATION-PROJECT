@@ -14,7 +14,7 @@ function Register() {
     password: "",
     // email: "hosam@home.com",
     // name: "Hosam Mohammad",
-    // password: "dev@dmin406A",
+    // password: "ASDasd@123",
   });
 
   const [state, formAction, isPending] = useActionState(register, {
@@ -42,7 +42,7 @@ function Register() {
         action={formAction}
         className="flex flex-col gap-6 max-w-xl w-full px-8"
       >
-        <h1 className="main-title text-4xl text-center font-bold mt-28 mb-4">DEPI-2 Todos</h1>
+        <h1 className="main-title text-4xl text-center font-bold mt-28 mb-4">DEPI-2 TODOS</h1>
         <div className="flex flex-col gap-2 ">
           <Label>Email</Label>
           <Input
