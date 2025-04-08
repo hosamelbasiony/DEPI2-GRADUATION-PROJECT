@@ -66,18 +66,16 @@ jobs:
 
       - name: Run JMeter test
         run: |
-          apache-jmeter-5.6.3/bin/jmeter -n -t ./JMeter-resources/Todo-Load-Test.jmx -l testresults.jtl -e -o report
+          apache-jmeter-5.6.3/bin/jmeter -n -t ./JMeter-resources/Todo-Load-Test.jmx -l testresults.jtl -e -o JMeter-Report
 
       - name: Search for output
-        run: ls ./
+        run: ls ./JMeter-Report
 
-      # - name: Upload test results
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: jmeter-results
-      #     path: |
-      #       testresults.jtl
-      #       report
+      - name: Upload test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: jmeter-results
+          path: JMeter-Report
 
           
   cypress-ui-e2e-tests:
@@ -143,30 +141,31 @@ jobs:
           NODE_ENV: "development"
           PORT: 4311
 
-  upload-artifacts-to-server:
   # sudo chmod -R 777 /home/hoss 
   # sudo chmod -R 777 /var/node/todoapp
-    runs-on: self-hosted
-    needs: [cypress-ui-e2e-tests , newman-api-tests]
-    steps:
-      - uses: actions/checkout@v4
 
-      - name: Install server dependencies
-        working-directory: MERN-TODO-APP/server
-        run: npm install
+  # upload-artifacts-to-server:
+  #   runs-on: self-hosted
+  #   needs: [cypress-ui-e2e-tests , newman-api-tests]
+  #   steps:
+  #     - uses: actions/checkout@v4
 
-      - name: Install client dependencies
-        working-directory: MERN-TODO-APP/client
-        run: npm install
+  #     - name: Install server dependencies
+  #       working-directory: MERN-TODO-APP/server
+  #       run: npm install
 
-      - name: Build client
-        working-directory: MERN-TODO-APP/client
-        run: npm run build
+  #     - name: Install client dependencies
+  #       working-directory: MERN-TODO-APP/client
+  #       run: npm install
 
-      - name: Copy app files
-        run: cp /home/hoss/actions-runner/_work/DEPI2-GRADUATION-PROJECT/DEPI2-GRADUATION-PROJECT/MERN-TODO-APP/server/* /var/node/todoapp/ -r
+  #     - name: Build client
+  #       working-directory: MERN-TODO-APP/client
+  #       run: npm run build
+
+  #     - name: Copy app files
+  #       run: cp /home/hoss/actions-runner/_work/DEPI2-GRADUATION-PROJECT/DEPI2-GRADUATION-PROJECT/MERN-TODO-APP/server/* /var/node/todoapp/ -r
       
-      - name: Restart servfer
-        run: pm2 restart 0
+  #     - name: Restart servfer
+  #       run: pm2 restart 0
 
-      - run: echo "🍏 This job's status is ${{ job.status }} ..."
+  #     - run: echo "🍏 This job's status is ${{ job.status }} ..."
