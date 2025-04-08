@@ -2,7 +2,7 @@
 
 const email = `depi2_${Date.now()}@egypt.eg`;
 
-describe('Authentication with proper creds', () => {
+describe('Todo management', () => {
   beforeEach(() => {
     cy.wait(1000)
   })
