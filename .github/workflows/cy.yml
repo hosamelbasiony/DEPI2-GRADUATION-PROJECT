@@ -71,11 +71,11 @@ jobs:
       - name: Search for output
         run: ls ./JMeter-Report
 
-      - name: Upload test results
-        uses: actions/upload-artifact@v3
-        with:
-          name: jmeter-results
-          path: JMeter-Report
+      # - name: Upload test results
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: jmeter-results
+      #     path: JMeter-Report
 
           
   cypress-ui-e2e-tests:
