@@ -68,11 +68,14 @@ jobs:
         run: |
           apache-jmeter-5.6.3/bin/jmeter -n -t ./JMeter-resources/Todo-Load-Test.jmx -l testresults.jtl -e -o ./
 
-      - name: Upload test results
-        uses: actions/upload-artifact@v4
-        with:
-          name: jmeter-results
-          path: ./apache-jmeter-5.6.3/bin/testresults.jtl
+      - name: Search for output
+        run: ls ./apache-jmeter-5.6.3/bin/testresults.jtl
+
+      # - name: Upload test results
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: jmeter-results
+      #     path: ./apache-jmeter-5.6.3/bin/testresults.jtl
 
           
   cypress-ui-e2e-tests:
