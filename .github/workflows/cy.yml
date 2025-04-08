@@ -45,8 +45,8 @@ jobs:
 
       - name: Install JMeter
         run: |
-          wget https://downloads.apache.org/jmeter/binaries/apache-jmeter-5.6.2.tgz
-          tar -xzf apache-jmeter-5.6.2.tgz
+          wget https://downloads.apache.org/jmeter/binaries/apache-jmeter-5.6.3.tgz
+          tar -xzf apache-jmeter-5.6.3.tgz
 
       - name: Install Node.js
         uses: actions/setup-node@v4
