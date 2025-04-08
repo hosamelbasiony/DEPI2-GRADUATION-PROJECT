@@ -66,7 +66,7 @@ jobs:
 
       - name: Run JMeter test
         run: |
-          apache-jmeter-5.6.2/bin/jmeter -n -t ./JMeter-resources/Todo-Load-Test.jmx -l testresults.jtl -e -o report
+          apache-jmeter-5.6.3/bin/jmeter -n -t ./JMeter-resources/Todo-Load-Test.jmx -l testresults.jtl -e -o report
 
       # - name: Upload test results
       #   uses: actions/upload-artifact@v3
