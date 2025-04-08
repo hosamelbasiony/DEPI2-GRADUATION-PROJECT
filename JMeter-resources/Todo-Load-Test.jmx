@@ -48,7 +48,7 @@
           <hashTree/>
           <SizeAssertion guiclass="SizeAssertionGui" testclass="SizeAssertion" testname="Size Assertion">
             <stringProp name="Assertion.test_field">SizeAssertion.response_network_size</stringProp>
-            <stringProp name="SizeAssertion.size">1</stringProp>
+            <stringProp name="SizeAssertion.size">1500</stringProp>
             <intProp name="SizeAssertion.operator">4</intProp>
           </SizeAssertion>
           <hashTree/>
@@ -125,7 +125,7 @@
             <stringProp name="DurationAssertion.duration">500</stringProp>
           </DurationAssertion>
           <hashTree/>
-          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
             <boolProp name="ResultCollector.error_logging">false</boolProp>
             <objProp>
               <name>saveConfig</name>
