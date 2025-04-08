@@ -36,7 +36,82 @@ jobs:
           JWT: "somestrongsecret"
           NODE_ENV: "development"
           PORT: 4311
+  
+  jmeter-load-test:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install JMeter
+        run: |
+          wget https://downloads.apache.org/jmeter/binaries/apache-jmeter-5.6.2.tgz
+          tar -xzf apache-jmeter-5.6.2.tgz
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install and start server
+        working-directory: ./MERN-TODO-APP/server
+        run: |
+          npm install
+          node index.js &
+        env:
+          MONGO_URI: mongodb://127.0.0.1:27017/Todos
+          JWT: "somestrongsecret"
+          NODE_ENV: "development"
+          PORT: 4311
+
+      - name: Run JMeter test
+        run: |
+          apache-jmeter-5.6.2/bin/jmeter -n -t ./JMeter-resources/Todo-Load-Test.jmx -l testresults.jtl -e -o report
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: jmeter-results
+          path: |
+            testresults.jtl
+            report
+
           
+  newman-api-testss:
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        node-version: [20.x]
+        mongodb-version: ['8.0']
+
+    steps:
+      - uses: actions/checkout@v4
+        
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          cache-dependency-path: ./MERN-TODO-APP/server/package-lock.json
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install server dependencies
+        working-directory: ./MERN-TODO-APP/server
+        run: npm install
+
+      - name: Start MongoDB
+        uses: supercharge/mongodb-github-action@1.12.0
+        with:
+          mongodb-version: ${{ matrix.mongodb-version }}
+
+      - name: API newman tests
+        run: |
+          node ./MERN-TODO-APP/server/index.js & newman run ./Postman-resources/DEPI\ 2.postman_collection.json -e ./Postman-resources/DEPI\ 2.postman_environment.json
+        env:
+          MONGO_URI: mongodb://127.0.0.1:27017/Todos
+          JWT: "somestrongsecret"
+          NODE_ENV: "development"
+          PORT: 4311
+
+
   cypress-ui-e2e-tests:
     runs-on: ubuntu-22.04
     needs: [newman-api-tests]
