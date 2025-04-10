@@ -16,6 +16,7 @@ pipeline {
             steps {
 
                 sh'''
+                    echo "Building Docker image >>>"
                     #docker build -t depi-todos-test-image:latest -f Dockerfile .
                 '''
             }
