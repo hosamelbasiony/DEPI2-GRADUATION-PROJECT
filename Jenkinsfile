@@ -63,6 +63,14 @@ pipeline {
             }
         }
 
+        stage('Unit Tests') {
+            steps {
+                sh'''
+                    echo "Deployment Run Stage >>>"
+                '''
+            }
+        }
+
         // stage('Test') {
         //     agent {
         //         docker {
