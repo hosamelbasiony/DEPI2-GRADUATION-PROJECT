@@ -30,20 +30,6 @@ pipeline {
             }
         }
 
-        stage('Mongo Client') {
-            agent {
-                docker {
-                    image 'mongoclient/mongoclient:4.0.0'
-                    reuseNode true
-                }
-            }
-            steps {
-                sh'''
-                    echo "Pulled Mongo Client image >>>"              
-                '''
-            }
-        }
-
         stage('Build') {
             agent {
                 docker {
@@ -97,7 +83,7 @@ pipeline {
             }
         }
 
-        stage('Unit Tests') {
+        stage('Deployment') {
             steps {
                 sh'''
                     echo "Deployment Run Stage >>>"
@@ -106,26 +92,28 @@ pipeline {
             }
         }
 
-        // stage('Test') {
-        //     agent {
-        //         docker {
-        //             image 'mcr.microsoft.com/playwright:v1.51.1-noble'
-        //             // image 'node:22-alpine'
-        //             reuseNode true
-        //             // args '-u root:root'
-        //         }
-        //     }
-        //     // Jenkins playwright e2e tests
-        //     steps {
-        //         sh'''
-        //             cd MERN-TODO-APP/server
-        //             npm i @playwright/test
-        //             node index.js &
-        //             sleep 100
-        //             npx playwright test  
-        //         '''
-        //     }
-        // }
+        stage('Test') {
+            agent {
+                docker {
+                    // image 'mcr.microsoft.com/playwright:v1.51.1-noble'
+                    image 'node:22-alpine'
+                    reuseNode true
+                    // args '-u root:root'
+                }
+            }
+            // Jenkins playwright e2e tests
+            steps {
+                sh'''
+                    cd MERN-TODO-APP/server
+                    npm run dev &
+                    sleep 100
+                    #npm i @playwright/test
+                    #node index.js &
+                    #sleep 100
+                    #npx playwright test  
+                '''
+            }
+        }
     }
     
     // post {
