@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        MONGO_URI="mongodb://host.docker.internal:27017/Todos"
-        MONGO_URL="mongodb://host.docker.internal:27017/Todos"
+        MONGO_URI=credentials('MONGO_URI')
+        MONGO_URL=credentials('MONGO_URI')
         JWT= "somestrongsecret"
         NODE_ENV="development"
         PORT=4311
