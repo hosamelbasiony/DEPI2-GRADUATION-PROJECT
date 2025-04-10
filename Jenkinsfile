@@ -2,8 +2,10 @@ pipeline {
     agent any
 
     environment {
-        MONGO_URI=credentials('MONGO_URI')
-        MONGO_URL=credentials('MONGO_URI')
+        MONGO_URI="mongodb://127.0.0.1:27017/Todos"
+        MONGO_URL="mongodb://127.0.0.1:27017/Todos"
+        // MONGO_URI=credentials('MONGO_URI')
+        // MONGO_URL=credentials('MONGO_URI')
         JWT= "somestrongsecret"
         NODE_ENV="development"
         PORT=4311
@@ -12,7 +14,7 @@ pipeline {
     }
     
     stages {
-        stage('Deploy'){
+        stage('Spin up MongoDB') {
             steps{
                 script{
                     withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
@@ -47,6 +49,32 @@ pipeline {
             }
         }
         
+        stage('Cypress e2e Tests') {
+            agent {
+                docker {
+                    image 'cypress/browsers'
+                    reuseNode true
+                }
+            }
+            steps {
+                try {
+                    sh'''
+                        cd ./MERN-TODO-APP/server
+                        npm ci
+                        npm run dev &
+                        sleep 10
+                        npx cypress run
+                        sleep 10
+                    '''
+                } catch (Exception e) {
+                    echo "Cypress e2e Tests Failed: ${e.message}"
+                    // Custom handling
+                    currentBuild.result = 'FAILURE'
+                    error('Cypress e2e tests stage failed') // Optional: stop pipeline
+                }
+            }
+        }
+
         stage('Newman Tests') {
             agent {
                 docker {
@@ -65,25 +93,6 @@ pipeline {
                 '''
             }
         }
-        
-        stage('Cypress e2e Tests') {
-            agent {
-                docker {
-                    image 'cypress/browsers'
-                    reuseNode true
-                }
-            }
-            steps {
-                sh'''
-                    cd ./MERN-TODO-APP/server
-                    npm ci
-                    npm run dev &
-                    sleep 10
-                    npx cypress run
-                    sleep 10
-                '''
-            }
-        }
     }
     
     post {
@@ -94,5 +103,4 @@ pipeline {
     }
 }
 
-// Jenkins pipeline updated to include MongoDB container setup and teardown
 // Jenkins - Added stages for building the client and running tests using Newman and Cypress
