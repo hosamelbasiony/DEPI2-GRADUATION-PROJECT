@@ -20,24 +20,24 @@ pipeline {
                 '''
             }
         }
-        // stage('Test') {
-        //     agent {
-        //         docker {
-        //             image 'node:22-alpine'
-        //             reuseNode true
-        //         }
-        //     }
-        //     steps {
-        //         sh'''
-        //             cd MERN-TODO-APP/server
-        //             npm ci
-        //             npm run dev &
-        //             cd ../client
-        //             npm run dev &
-        //             npx cypress run 
-        //         '''
-        //     }
-        // }
+        stage('Test') {
+            agent {
+                docker {
+                    image 'node:22-alpine'
+                    reuseNode true
+                }
+            }
+            steps {
+                sh'''
+                    cd MERN-TODO-APP/server
+                    npm ci
+                    npm run dev &
+                    cd ../client
+                    npm run dev &
+                    npx cypress run 
+                '''
+            }
+        }
     }
     
     post {
