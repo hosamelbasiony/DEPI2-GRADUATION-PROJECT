@@ -60,7 +60,7 @@ pipeline {
                     npm ci
                     npm run dev &
                     sleep 10
-                    newman run ../../Postman-resources/DEPI 2.postman_collection.json -e ../../Postman-resources/DEPI 2.postman_environment.json
+                    ./node_modules/.bin/newman run ../../Postman-resources/DEPI 2.postman_collection.json -e ../../Postman-resources/DEPI 2.postman_environment.json
                     sleep 10
                 '''
             }

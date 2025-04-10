@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "cypress": "npx cypress run"
+    "cypress": "npx cypress run",
+    "newman": "npx ./node_modules/.bin/newman postman_collection.json -e postman_environment.json"
   },
   "keywords": [],
   "author": "",
