@@ -57,21 +57,20 @@ pipeline {
                 }
             }
             steps {
-                try {
-                    sh'''
-                        cd ./MERN-TODO-APP/server
-                        npm ci
-                        npm run dev &
-                        sleep 10
-                        npx cypress run
-                        sleep 10
-                    '''
-                } catch (Exception e) {
-                    echo "Cypress e2e Tests Failed: ${e.message}"
-                    // Custom handling
-                    currentBuild.result = 'FAILURE'
-                    error('Cypress e2e tests stage failed') // Optional: stop pipeline
-                }
+                // try {
+                sh'''
+                    cd ./MERN-TODO-APP/server
+                    npm ci
+                    npm run dev &
+                    sleep 10
+                    npx cypress run
+                    sleep 10
+                '''
+                // } catch (Exception e) {
+                //     echo "Cypress e2e Tests Failed: ${e.message}"
+                //     currentBuild.result = 'FAILURE'
+                //     error('Cypress e2e tests stage failed') // Optional: stop pipeline
+                // }
             }
         }
 
