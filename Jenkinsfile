@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        MONGO_URI="jenkins-mongo://mongodb:27017/Todos"
-        MONGO_URL="jenkins-mongo://mongodb:27017/Todos"
+        MONGO_URI="mongodb://jenkins-mongo:27017/Todos"
+        MONGO_URL="mongodb://jenkins-mongo:27017/Todos"
         JWT= "somestrongsecret"
         NODE_ENV="development"
         PORT=4311
