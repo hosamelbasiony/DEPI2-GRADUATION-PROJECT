@@ -1,20 +1,20 @@
 pipeline {
     agent any
+
+     keepRunning {
+        sh 'docker rm -f jenkins-mongo || true'
+        sh 'docker run -d --name jenkins-mongo -p 27017:27017 mongo:latest'
+    }
     
     stages {
-        stage('Start MongoDB') {
-            keepRunning {
-                sh 'docker rm -f jenkins-mongo || true'
-                sh 'docker run -d --name jenkins-mongo -p 27017:27017 mongo:latest'
-            }
-
+        // stage('Start MongoDB') {
             // steps {
                 // script {
                 //     sh 'docker rm -f jenkins-mongo || true'
                 //     sh 'docker run -d --name jenkins-mongo -p 27017:27017 mongo:latest'
                 // }
             // }
-        }
+        // }
         
         stage('Run Tests') {
             steps {
