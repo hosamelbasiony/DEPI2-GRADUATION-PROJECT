@@ -76,7 +76,7 @@ pipeline {
             steps {
                 sh'''
                     cd ./MERN-TODO-APP/server
-                    # npm ci
+                    npm ci
                     npm run dev &
                     sleep 10
                     npx cypress run
