@@ -60,7 +60,7 @@ pipeline {
                     npm ci
                     npm run dev &
                     # curl -s http://localhost:4311/api/healthcheck
-                    newman run ./Postman-resources/DEPI\ 2.postman_collection.json -e ./Postman-resources/DEPI\ 2.postman_environment.json
+                    newman run ./Postman-resources/DEPI 2.postman_collection.json -e ./Postman-resources/DEPI 2.postman_environment.json
                     sleep 10
                 '''
             }
