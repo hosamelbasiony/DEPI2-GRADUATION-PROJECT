@@ -18,7 +18,7 @@ FROM node:22-bullseye
 
 # RUN systemctl enable mongod
 
-FROM mongodb:8.0
+FROM mongodb/mongodb-community-server:latest
 # FROM node:22-bullseye
 
 
