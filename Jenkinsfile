@@ -1,5 +1,15 @@
 pipeline {
     agent any
+
+    environment {
+        MONGO_URI="jenkins-mongo://mongodb:27017/Todos"
+        MONGO_URL="jenkins-mongo://mongodb:27017/Todos"
+        JWT= "somestrongsecret"
+        NODE_ENV="development"
+        PORT=4311
+        VITE_BASE_URL="http://localhost:4311/api/"
+        TEST_SECRET = credentials('TEST_SECRET')
+    }
     
     stages {
         stage('Deploy'){
@@ -17,6 +27,23 @@ pipeline {
                         '''
                     }
                 }
+            }
+        }
+        
+        stage('Build') {
+            agent {
+                docker {
+                    image 'node:22-alpine'
+                    reuseNode true
+                }
+            }
+            steps {
+                sh'''
+                    cd ./MERN-TODO-APP/server
+                    npm ci
+                    npm run dev &
+                    sleep 10
+                '''
             }
         }
         
