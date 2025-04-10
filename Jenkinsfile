@@ -13,10 +13,10 @@ pipeline {
                 sh'''
                     pwd
                     ls -la
-                    cd MERN-TODO-APP/cleint
+                    cd ./MERN-TODO-APP/client
                     pwd
-                    # npm ci
-                    # npm run build                    
+                    npm ci
+                    npm run build                    
                 '''
             }
         }
