@@ -39,7 +39,7 @@ pipeline {
             steps {
                 sh''' 
                     echo "Testing MongoDb status >>>"
-                    systemctl status mongod
+                    service mongod status
                 '''
             }
         }
