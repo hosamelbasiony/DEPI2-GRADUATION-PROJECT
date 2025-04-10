@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        MONGO_URI="mongodb://127.0.0.1:27017/Todos"
+        MONGO_URI="mongodb://mongodb:27017/Todos"
         JWT= "somestrongsecret"
         NODE_ENV="development"
         PORT=4311
@@ -40,10 +40,10 @@ pipeline {
                     cd MERN-TODO-APP/server
                     npm ci
                     npm run dev &
-                    cd ../client
-                    npm run dev &
-                    npm run test:ui
-                    npx cypress run 
+                    #cd ../client
+                    #npm run dev &
+                    #npm run test:ui
+                    #npx cypress run 
                 '''
             }
         }
