@@ -26,15 +26,14 @@ pipeline {
         }
     }
     
-    post {
-        always {
-            script {
-                // Cleanup container when pipeline finishes
-                sh 'docker stop jenkins-mongo || true'
-                sh 'docker rm -f jenkins-mongo || true'
-            }
-        }
-    }
+    // post {
+    //     always {
+    //         script {
+    //             sh 'docker stop jenkins-mongo || true'
+    //             sh 'docker rm -f jenkins-mongo || true'
+    //         }
+    //     }
+    // }
 }
 
 // Jenkins node/mongo image
