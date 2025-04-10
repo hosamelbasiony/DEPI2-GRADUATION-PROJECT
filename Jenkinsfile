@@ -86,8 +86,8 @@ pipeline {
     }
     
     post {
-        always {
-            junit 'MERN-TODO-APP/client/test-results/junit.xml'
-        }
+        // always {
+        //     junit 'MERN-TODO-APP/client/test-results/junit.xml'
+        // }
     }
 }
