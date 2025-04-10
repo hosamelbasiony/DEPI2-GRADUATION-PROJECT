@@ -2,10 +2,10 @@ pipeline {
     agent any
 
     environment {
-        MONGO_URI="mongodb://127.0.0.1:27017/Todos"
-        MONGO_URL="mongodb://127.0.0.1:27017/Todos"
-        // MONGO_URI=credentials('MONGO_URI')
-        // MONGO_URL=credentials('MONGO_URI')
+        // MONGO_URI="mongodb://127.0.0.1:27017/Todos"
+        // MONGO_URL="mongodb://127.0.0.1:27017/Todos"
+        MONGO_URI=credentials('MONGO_URI')
+        MONGO_URL=credentials('MONGO_URI')
         JWT= "somestrongsecret"
         NODE_ENV="development"
         PORT=4311
