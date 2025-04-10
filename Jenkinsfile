@@ -1,6 +1,14 @@
 pipeline {
     agent any
 
+    environment {
+        MONGO_URI="mongodb://127.0.0.1:27017/Todos"
+        JWT= "somestrongsecret"
+        NODE_ENV="development"
+        PORT=4311
+        VITE_BASE_URL="http://localhost:4311/api/"
+    }
+
     stages {
         stage('Build') {
             agent {
