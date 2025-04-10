@@ -11,7 +11,7 @@ pipeline {
     }
 
     stages {
-        // Jenkins node/mongo image
+        //  Jenkins node/mongo image
         stage('Docker build') {
             steps {
                 // script {
