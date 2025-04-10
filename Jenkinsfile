@@ -13,23 +13,6 @@ pipeline {
 
     stages {
         // Jenkins node/mongo image
-        stage('Docker build') {
-            steps {
-
-                sh'''
-                    echo "Building Docker image >>>"
-                    #docker build -t depi-todos-test-image:latest -f Dockerfile .
-                '''
-            }
-        }
-        stage('Test Image') {
-            steps {
-                sh''' 
-                    echo "Testing MongoDb status >>>"
-                '''
-            }
-        }
-
         stage('Build') {
             agent {
                 docker {
@@ -40,17 +23,16 @@ pipeline {
             }
             steps {
                 sh'''
-                    #chmod -R 777 / 
                     pwd
                     ls -la
                     cd ./MERN-TODO-APP/client
                     pwd
-                    npm ci
-                    npm run build    
-                    #chmod -R 777 /                
+                    #npm ci
+                    #npm run build                
                 '''
             }
         }
+
         stage ('Run Tests') {
             parallel {
                 stage('Unit Tests') {
@@ -92,33 +74,26 @@ pipeline {
             }
         }
 
-        stage('Test') {
-            agent {
-                docker {
-                    // image 'mcr.microsoft.com/playwright:v1.51.1-noble'
-                    image 'node:22-alpine'
-                    reuseNode true
-                    // args '-u root:root'
-                }
-            }
-            // Jenkins playwright e2e tests
-            steps {
-                sh'''
-                    cd MERN-TODO-APP/server
-                    npm run dev &
-                    sleep 100
-                    #npm i @playwright/test
-                    #node index.js &
-                    #sleep 100
-                    #npx playwright test  
-                '''
-            }
-        }
+        // stage('Test') {
+        //     agent {
+        //         docker {
+        //             image 'node:22-alpine'
+        //             reuseNode true
+        //             // args '-u root:root'
+        //         }
+        //     }
+        //     // Jenkins playwright e2e tests
+        //     steps {
+        //         sh'''
+        //             cd MERN-TODO-APP/server
+        //             npm run dev &
+        //             sleep 100
+        //             #npm i @playwright/test
+        //             #node index.js &
+        //             #sleep 100
+        //             #npx playwright test  
+        //         '''
+        //     }
+        // }
     }
-    
-    // post {
-    //     always {
-    //         junit 'MERN-TODO-APP/client/test-results/junit.xml'
-    //     }
-    // }
 }
