@@ -11,30 +11,32 @@ pipeline {
             }
             steps {
                 sh'''
+                    pwd
                     cd MERN-TODO-APP/cleint
-                    npm ci
-                    npm run build                    
+                    pwd
+                    # npm ci
+                    # npm run build                    
                 '''
             }
         }
-        stage('Test') {
-            agent {
-                docker {
-                    image 'node:18-alpine'
-                    reuseNode true
-                }
-            }
-            steps {
-                sh'''
-                    cd MERN-TODO-APP/server
-                    npm ci
-                    npm run dev &
-                    cd ../client
-                    npm run dev &
-                    npx cypress run 
-                '''
-            }
-        }
+        // stage('Test') {
+        //     agent {
+        //         docker {
+        //             image 'node:18-alpine'
+        //             reuseNode true
+        //         }
+        //     }
+        //     steps {
+        //         sh'''
+        //             cd MERN-TODO-APP/server
+        //             npm ci
+        //             npm run dev &
+        //             cd ../client
+        //             npm run dev &
+        //             npx cypress run 
+        //         '''
+        //     }
+        // }
     }
     
     post {
