@@ -22,7 +22,10 @@ pipeline {
         
         stage('Run Tests') {
             steps {
-                sh 'your-test-command-here'
+                sh '''
+                    echo "Running tests..."
+                    # Add your test commands here, e.g., npm test or pytest
+                '''
             }
         }
     }
