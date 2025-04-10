@@ -12,6 +12,7 @@ pipeline {
             steps {
                 sh'''
                     pwd
+                    ls -la
                     cd MERN-TODO-APP/cleint
                     pwd
                     # npm ci
