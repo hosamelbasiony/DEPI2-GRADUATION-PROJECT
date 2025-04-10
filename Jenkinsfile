@@ -69,7 +69,7 @@ pipeline {
         stage('Cypress e2e Tests') {
             agent {
                 docker {
-                    image 'cypress/base:22.14.0'
+                    image 'cypress/browsers'
                     reuseNode true
                 }
             }
@@ -94,4 +94,5 @@ pipeline {
     }
 }
 
-// Jenkins node/mongo image
+// Jenkins pipeline updated to include MongoDB container setup and teardown
+// Jenkins - Added stages for building the client and running tests using Newman and Cypress

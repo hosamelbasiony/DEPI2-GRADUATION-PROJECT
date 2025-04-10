@@ -11,7 +11,7 @@ describe('As a user, I want to register with my email and password so that I can
 
     cy.visit('/register')
 
-    cy.get('input[data-cy="emaiaaaaal"]')
+    cy.get('input[data-cy="email"]')
       .should('exist')
       .clear()
       .type(email)
