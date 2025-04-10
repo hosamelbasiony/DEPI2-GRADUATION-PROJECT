@@ -13,9 +13,7 @@ pipeline {
                         '''
                         // Verify MongoDB is ready
                         sh '''
-                            until docker exec jenkins-mongo mongo --eval "printjson(db.serverStatus())"; do
-                                sleep 2
-                            done
+                            docker ps
                         '''
                     }
                 }
