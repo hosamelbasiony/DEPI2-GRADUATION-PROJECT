@@ -72,16 +72,16 @@ pipeline {
                     image 'cypress/base:22.14.0'
                     reuseNode true
                 }
-                steps {
-                    sh'''
-                        cd ./MERN-TODO-APP/server
-                        # npm ci
-                        npm run dev &
-                        sleep 10
-                        npx cypress run
-                        sleep 10
-                    '''
-                }
+            }
+            steps {
+                sh'''
+                    cd ./MERN-TODO-APP/server
+                    # npm ci
+                    npm run dev &
+                    sleep 10
+                    npx cypress run
+                    sleep 10
+                '''
             }
         }
     }
