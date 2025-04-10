@@ -30,6 +30,23 @@ pipeline {
             }
         }
         
+        stage('Build client') {
+            agent {
+                docker {
+                    image 'node:22-alpine'
+                    reuseNode true
+                }
+            }
+            steps {
+                sh'''
+                    cd ./MERN-TODO-APP/client
+                    npm ci
+                    npm run build &
+                    sleep 10
+                '''
+            }
+        }
+        
         stage('Build') {
             agent {
                 docker {
@@ -42,6 +59,7 @@ pipeline {
                     cd ./MERN-TODO-APP/server
                     npm ci
                     npm run dev &
+                    curl -s http://localhost:4311/api/healthcheck
                     sleep 10
                 '''
             }
