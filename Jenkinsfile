@@ -15,19 +15,19 @@ pipeline {
                 docker {
                     image 'node:22-alpine'
                     reuseNode true
-                    args '-u root:root'
+                    // args '-u root:root'
                 }
             }
             steps {
                 sh'''
-                    chmod -R 777 / 
+                    #chmod -R 777 / 
                     pwd
                     ls -la
                     cd ./MERN-TODO-APP/client
                     pwd
                     npm ci
                     npm run build    
-                    chmod -R 777 /                
+                    #chmod -R 777 /                
                 '''
             }
         }
@@ -37,7 +37,7 @@ pipeline {
                     image 'mcr.microsoft.com/playwright:v1.51.1-noble'
                     // image 'node:22-alpine'
                     reuseNode true
-                    args '-u root:root'
+                    // args '-u root:root'
                 }
             }
             // Jenkins playwright e2e tests
@@ -57,7 +57,7 @@ pipeline {
                     #npm run dev &
                     #npm run test:ui
                     #npx cypress run 
-                    chmod -R 777 / 
+                    #chmod -R 777 / 
                 '''
             }
         }
