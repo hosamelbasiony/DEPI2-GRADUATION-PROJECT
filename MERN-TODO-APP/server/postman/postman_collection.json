@@ -1,0 +1,540 @@
+{
+	"info": {
+		"_postman_id": "a5563ca8-9d46-4131-a4e2-5ea56d53f0d4",
+		"name": "DEPI 2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2798790",
+		"_collection_link": "https://lively-space-21810.postman.co/workspace/3f787d35-f8d0-4e55-9f59-f7b0bb5bb6b8/collection/2798790-a5563ca8-9d46-4131-a4e2-5ea56d53f0d4?action=share&source=collection_link&creator=2798790"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register user",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var email = \"hosam\" + Date.now() + \"@home.com\"\r",
+									"pm.environment.set(\"currentEmail\", email);\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201 - register\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"let ret = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Correct email is returned\", function () {\r",
+									"    pm.expect(ret.email).to.equal(pm.environment.get(\"currentEmail\"));\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Correct name is returned\", function () {\r",
+									"    pm.expect(ret.name).to.equal(\"Hosam Mohammad\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{currentEmail}}\",\r\n    \"password\": \"{{password}}\",\r\n    \"name\": \"Hosam Mohammad\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 - login\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"let ret = pm.response.json();\r",
+									"\r",
+									"console.log(pm.environment.get(\"currentEmail\"));\r",
+									"\r",
+									"pm.test(\"Correct email is returned\", function () {\r",
+									"    pm.expect(ret.user.email).to.equal(pm.environment.get(\"currentEmail\"));\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Correct name is returned\", function () {\r",
+									"    pm.expect(ret.user.name).to.equal(\"Hosam Mohammad\");\r",
+									"});\r",
+									"\r",
+									"if ( ret?.user ) pm.environment.set(\"userId\", ret.user.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{currentEmail}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user profile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"let ret = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Returned user info\", function () {\r",
+									"    pm.expect(ret.user).to.exist;\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user/profile",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Todos",
+			"item": [
+				{
+					"name": "Create todo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"let ret = pm.response.json();\r",
+									"\r",
+									"pm.environment.set(\"currentTodoId\", ret[\"_id\"]);\r",
+									"\r",
+									"pm.test(\"Correct userId is returned\", function () {\r",
+									"    pm.expect(ret.userId).to.equal(pm.environment.get(\"userId\"));\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"new todo 1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/todo",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"todo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All todos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"let ret = pm.response.json();\r",
+									"\r",
+									"pm.test(\"At least a todo is returned\", function () {\r",
+									"    pm.expect(ret).not.empty;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Correct userId of the first todo is returned\", function () {\r",
+									"    pm.expect(ret[0].userId).to.equal(pm.environment.get(\"userId\"));\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/todo",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"todo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get todo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"let ret = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Correct userId is returned\", function () {\r",
+									"    pm.expect(ret.userId).to.equal(pm.environment.get(\"userId\"));\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Correct todo id is returned\", function () {\r",
+									"    pm.expect(ret[\"_id\"]).to.equal(pm.environment.get(\"currentTodoId\"));\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/todo/{{currentTodoId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"todo",
+								"{{currentTodoId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update todo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"let ret = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Correct userId is returned\", function () {\r",
+									"    pm.expect(ret.userId).to.equal(pm.environment.get(\"userId\"));\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Correct todo id is returned\", function () {\r",
+									"    pm.expect(ret[\"_id\"]).to.equal(pm.environment.get(\"currentTodoId\"));\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Correct todo title is returned\", function () {\r",
+									"    pm.expect(ret[\"title\"]).to.equal(\"new todo updated\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Correct todo iscomplete is returned\", function () {\r",
+									"    pm.expect(ret[\"isCompleted\"]).to.equal(true);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"new todo updated\",\r\n    \"isCompleted\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/todo/{{currentTodoId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"todo",
+								"{{currentTodoId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete todo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"let ret = pm.response.json();\r",
+									"pm.test(\"Correct message is returned\", function () {\r",
+									"    pm.expect(ret.message).to.equal(\"Todo deleted\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/todo/{{currentTodoId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"todo",
+								"{{currentTodoId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Logout user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 - logout\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/user/logout",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"user",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
