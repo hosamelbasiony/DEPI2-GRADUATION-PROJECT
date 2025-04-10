@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         MONGO_URI="mongodb://mongodb:27017/Todos"
+        MONGO_URL="mongodb://mongodb:27017/Todos"
         JWT= "somestrongsecret"
         NODE_ENV="development"
         PORT=4311
@@ -22,16 +23,23 @@ pipeline {
             }
         }
         stage('Test Image') {
-            // agent {
-            //     docker {
-            //         image 'depi-todos-test-image:latest'
-            //         reuseNode true
-            //     }
-            // }
             steps {
                 sh''' 
                     echo "Testing MongoDb status >>>"
-                    ping mongod
+                '''
+            }
+        }
+
+        stage('Mongo Client') {
+            agent {
+                docker {
+                    image 'mongoclient/mongoclient:4.0.0'
+                    reuseNode true
+                }
+            }
+            steps {
+                sh'''
+                    echo "Pulled Mongo Client image >>>"              
                 '''
             }
         }
