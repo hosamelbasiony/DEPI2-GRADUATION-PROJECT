@@ -7,9 +7,42 @@ pipeline {
         NODE_ENV="development"
         PORT=4311
         VITE_BASE_URL="http://localhost:4311/api/"
+        TEST_SECRET = credentials('TEST_SECRET')
     }
 
     stages {
+        stage('Docker build') {
+            steps {
+                // script {
+                //     def dockerImage = docker.build("mern-todo-app:latest", "-f MERN-TODO-APP/Dockerfile .")
+                //     dockerImage.inside("-u root:root") {
+                //         sh '''
+                //             echo "Docker build stage >>>"
+                //             echo $TEST_SECRET
+                //         '''
+                //     }
+                // }
+
+                sh'''
+                    docker build -t depi-todos-test-image:latest -f Dockerfile .
+                '''
+            }
+        }
+        stage('Test Image') {
+            agent {
+                docker {
+                    image 'depi-todos-test-image:latest'
+                    reuseNode true
+                }
+            }
+            steps {
+                sh''' 
+                    echo "Testing MongoDb status >>>"
+                    systemctl status mongod
+                '''
+            }
+        }
+
         stage('Build') {
             agent {
                 docker {
@@ -67,6 +100,7 @@ pipeline {
             steps {
                 sh'''
                     echo "Deployment Run Stage >>>"
+                    echo $TEST_SECRET
                 '''
             }
         }
