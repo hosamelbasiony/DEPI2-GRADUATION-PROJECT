@@ -11,12 +11,9 @@ pipeline {
             }
             steps {
                 sh'''
-                    ls -la
-                    node --version
-                    npm --version
+                    cd MERN-TODO-APP/cleint
                     npm ci
-                    npm run build
-                    ls -la
+                    npm run build                    
                 '''
             }
         }
@@ -29,9 +26,20 @@ pipeline {
             }
             steps {
                 sh'''
-                    npm test
+                    cd MERN-TODO-APP/server
+                    npm ci
+                    npm run dev &
+                    cd ../client
+                    npm run dev &
+                    npx cypress run 
                 '''
             }
+        }
+    }
+    
+    post {
+        always {
+            junit 'MERN-TODO-APP/client/test-results/junit.xml'
         }
     }
 }
