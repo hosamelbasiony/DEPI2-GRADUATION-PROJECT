@@ -30,7 +30,7 @@ pipeline {
             steps {
                 sh''' 
                     echo "Testing MongoDb status >>>"
-                    service mongod status
+                    ping mongod
                 '''
             }
         }
