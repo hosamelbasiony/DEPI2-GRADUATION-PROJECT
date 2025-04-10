@@ -3,14 +3,17 @@ pipeline {
     
     stages {
         stage('Start MongoDB') {
-            steps {
-                script {
-                    // Remove any existing container first
-                    sh 'docker rm -f jenkins-mongo || true'
-                    // Start new container
-                    sh 'docker run -d --name jenkins-mongo -p 27017:27017 mongo:latest'
-                }
+            keepRunning {
+                sh 'docker rm -f jenkins-mongo || true'
+                sh 'docker run -d --name jenkins-mongo -p 27017:27017 mongo:latest'
             }
+
+            // steps {
+                // script {
+                //     sh 'docker rm -f jenkins-mongo || true'
+                //     sh 'docker run -d --name jenkins-mongo -p 27017:27017 mongo:latest'
+                // }
+            // }
         }
         
         stage('Run Tests') {
