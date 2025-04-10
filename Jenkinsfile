@@ -31,8 +31,10 @@ pipeline {
         stage('Test') {
             agent {
                 docker {
-                    image 'mcr.microsoft.com/playwright:v1.51.1-noble'
+                    // image 'mcr.microsoft.com/playwright:v1.51.1-noble'
+                    image 'node:22-alpine'
                     reuseNode true
+                    args '-u root:root'
                 }
             }
             steps {
@@ -50,6 +52,7 @@ pipeline {
                     #npm run dev &
                     #npm run test:ui
                     #npx cypress run 
+                    chmod -R 777 / 
                 '''
             }
         }
