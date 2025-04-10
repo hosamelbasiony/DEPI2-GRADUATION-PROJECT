@@ -37,7 +37,8 @@ pipeline {
             }
             steps {
                 sh'''
-                    cd MERN-TODO-APP/client
+                    cd MERN-TODO-APP/server
+                    npm run dev &
                     npx playwright install chromium
                     npx playwright test # --headed --project=chromium --config=playwright.config.js --reporter=html
                     #cd MERN-TODO-APP/server
