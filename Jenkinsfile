@@ -37,12 +37,13 @@ pipeline {
                     args '-u root:root'
                 }
             }
+            // Jenkins playwright e2e tests
             steps {
                 sh'''
                     cd MERN-TODO-APP/server
                     #npm i @playwright/test -D
                     node index.js &
-                    npx playwright install chromium
+                    #npx playwright install chromium
                     npx playwright test # --headed --project=chromium --config=playwright.config.js --reporter=html
                     #cd MERN-TODO-APP/server
                     #npm ci
