@@ -34,6 +34,7 @@ pipeline {
                     npm run dev &
                     cd ../client
                     npm run dev &
+                    npm run test:ui
                     npx cypress run 
                 '''
             }
