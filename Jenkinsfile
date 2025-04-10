@@ -42,7 +42,7 @@ pipeline {
                     }
                     steps {
                         sh'''
-                            echo "Unit Tests Run Here"
+                            echo "Unit Tests Run Stage"
                         '''
                     }
                 }
@@ -56,7 +56,7 @@ pipeline {
                     }
                     steps {
                          sh'''
-                            echo "Integration Tests Run Here"
+                            echo "Integration Tests Run Stage"
                         '''
                     }
                 }
