@@ -6,7 +6,7 @@ pipeline {
         steps {
             script {
                 // Start MongoDB in background with a fixed name
-                docker.image('mongo:latest').withRun(
+                docker.image('mongo:latest').withRun('-u 0:0').inside {
                     '--name jenkins-mongo -p 27017:27017',
                     background: true
                 ) 
