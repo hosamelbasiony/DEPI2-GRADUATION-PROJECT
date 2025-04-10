@@ -13,37 +13,20 @@ pipeline {
     stages {
         // Jenkins node/mongo image
         stage('Docker build') {
-            agent {
-                docker {
-                    image 'node:22-alpine'
-                    reuseNode true
-                    // args '-u root:root'
-                }
-            }
             steps {
-                // script {
-                //     def dockerImage = docker.build("mern-todo-app:latest", "-f MERN-TODO-APP/Dockerfile .")
-                //     dockerImage.inside("-u root:root") {
-                //         sh '''
-                //             echo "Docker build stage >>>"
-                //             echo $TEST_SECRET
-                //         '''
-                //     }
-                // }
 
                 sh'''
-                    # docker build -t depi-todos-test-image:latest -f Dockerfile .
-                    ping mongdb 
+                    #docker build -t depi-todos-test-image:latest -f Dockerfile .
                 '''
             }
         }
         stage('Test Image') {
-            agent {
-                docker {
-                    image 'depi-todos-test-image:latest'
-                    reuseNode true
-                }
-            }
+            // agent {
+            //     docker {
+            //         image 'depi-todos-test-image:latest'
+            //         reuseNode true
+            //     }
+            // }
             steps {
                 sh''' 
                     echo "Testing MongoDb status >>>"
