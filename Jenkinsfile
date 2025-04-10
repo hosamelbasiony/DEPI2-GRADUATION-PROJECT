@@ -15,16 +15,19 @@ pipeline {
                 docker {
                     image 'node:22-alpine'
                     reuseNode true
+                    args '-u root:root'
                 }
             }
             steps {
                 sh'''
+                    chmod -R 777 / 
                     pwd
                     ls -la
                     cd ./MERN-TODO-APP/client
                     pwd
                     npm ci
-                    npm run build                    
+                    npm run build    
+                    chmod -R 777 /                
                 '''
             }
         }
