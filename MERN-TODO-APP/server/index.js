@@ -32,9 +32,9 @@ app.use(cors(corsOptions));
 
 app.use("/api/user", AuthRoute);
 app.use("/api/todo", TodoRoute);
-app.use("/api/healthcheck", (req, res) => {
-    res.status(200).json({message: "Server is up and running"});
-});
+// app.use("/api/healthcheck", (req, res) => {
+//     res.status(200).json({message: "Server is up and running"});
+// });
 
 // global error handler
 
