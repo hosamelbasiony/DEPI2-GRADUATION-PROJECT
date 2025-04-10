@@ -1,25 +1,21 @@
-FROM node:22-bullseye
+FROM node:20
 
-# RUN apt-get install gnupg curl
+# Install MongoDB
+RUN apt-get update && \
+    apt-get install -y wget gnupg && \
+    wget -qO - https://www.mongodb.org/static/pgp/server-8.0.asc | apt-key add - && \
+    echo "deb http://repo.mongodb.org/apt/debian buster/mongodb-org/8.0 main" | tee /etc/apt/sources.list.d/mongodb-org-8.0.list && \
+    apt-get update && \
+    apt-get install -y mongodb-org
 
-# RUN curl -fsSL https://www.mongodb.org/static/pgp/server-8.0.asc | \
-#     gpg -o /usr/share/keyrings/mongodb-server-8.0.gpg \
-#     --dearmor
+WORKDIR /usr/src/app
 
-# RUN echo "deb [ signed-by=/usr/share/keyrings/mongodb-server-8.0.gpg ] http://repo.mongodb.org/apt/debian bookworm/mongodb-org/8.0 main" | tee /etc/apt/sources.list.d/mongodb-org-8.0.list
+COPY package.json ./
+RUN npm install
 
-# RUN apt-get update -y
+COPY server.js public/ ./
 
-# RUN apt-get install -y mongodb-org
+EXPOSE 3000
+EXPOSE 27017
 
-# RUN systemctl start mongod
-
-# RUN systemctl daemon-reload
-
-# RUN systemctl enable mongod
-
-FROM mongodb/mongodb-community-server:latest
-# FROM node:22-bullseye
-
-
-
+CMD service mongod start && node server.js
