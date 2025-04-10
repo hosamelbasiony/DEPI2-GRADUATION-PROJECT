@@ -2,6 +2,8 @@
 
 /todo-app
 
+/Jenkins-resources
+
 # dependencies
 /node_modules
 /.pnp

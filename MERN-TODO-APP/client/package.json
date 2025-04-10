@@ -10,6 +10,7 @@
     "preview": "vite preview",
     "test": "vitest",
     "test:uii": "vitest --ui",
+    "test:unit": "npx vitest --reporter=json --outputFile=./test-output.json --ui",
     "test:ui": "vitest --ui --api 9527"
   },
   "dependencies": {

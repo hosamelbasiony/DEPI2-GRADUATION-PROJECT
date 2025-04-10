@@ -16,9 +16,17 @@ export default defineConfig({
         },
     },
     test: {
+        reporters: ['default', 'junit'],
+        outputFile: {
+            junit: './test-results/junit.xml',
+        },
+        // reporters: [
+        //     'default',
+        //     ['junit', { suiteName: 'UI tests' }]
+        // ],
         environment: 'jsdom',
         globals: true,
         setupFiles: 'tests/setup.js',
     },
-    
+
 })
