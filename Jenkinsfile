@@ -47,7 +47,7 @@ pipeline {
             }
         }
         
-        stage('Build') {
+        stage('Newman Tests') {
             agent {
                 docker {
                     image 'node:22-alpine'
@@ -66,12 +66,22 @@ pipeline {
             }
         }
         
-        stage('Run Tests') {
-            steps {
-                sh '''
-                    echo "Running tests..."
-                    # Add your test commands here, e.g., npm test or pytest
-                '''
+        stage('Cypress e2e Tests') {
+            agent {
+                docker {
+                    image 'cypress/base:22.14.0'
+                    reuseNode true
+                }
+                steps {
+                    sh'''
+                        cd ./MERN-TODO-APP/server
+                        # npm ci
+                        npm run dev &
+                        sleep 10
+                        npx cypress run
+                        sleep 10
+                    '''
+                }
             }
         }
     }
